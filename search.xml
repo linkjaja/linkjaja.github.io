@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>picbed</title>
+      <link href="/2020/06/18/picbed/"/>
+      <url>/2020/06/18/picbed/</url>
+      
+        <content type="html"><![CDATA[<h1 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h1><p>在Typora中利用PicGo自动上传图片到SM.MS图床</p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol><li><p>install <code>Typora</code>，<code>PicGo</code>，<code>Git</code>，<code>Node.js</code></p><span class="label label-info">Typora</span><span class="label label-info">PicGo</span><span class="label label-warning">Git</span><span class="label label-warning">Node.js</span></li><li><p>register sm.ms</p></li><li><p>picgo 安装 sm.ms 插件</p></li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git向导</title>
       <link href="/2020/06/16/git-guide/"/>
       <url>/2020/06/16/git-guide/</url>
