@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>something about SQL | Latehour Beer</title>
+  <meta name="author" content="Link">
+  
+  <meta name="description" content="© 本文版权归作者Link 所有，转载请注明出处。
+
+SQL运行原理
+准备表格
+复制源数据进行连接，筛选；
+FROM
+JOIN：连接表格；
+WHERE：将数据按以下条件筛选；
+
+
+如果需要聚合运算，则基于连接、筛选好的数据，创建“数据透视表”；
+GROUP BY：按以下字段和条件分组；
+SQL 中的">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="something about SQL"/>
+  <meta property="og:site_name" content="Latehour Beer"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Latehour Beer" type="application/atom+xml">
+  
+  
+    <link href="/favicon.ico" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">Latehour Beer</a><span class="split"></span><span class="title">something about SQL</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2021-04-11</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  <div class="col-xs-12 col-sm-3 col-md-3 toc"> 
+	<!-- toc -->
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+ 		   generateWikiTOC('.note', '.toc',  2 , 2 );
+		});
+</script>
+  </div><!-- col-md-3 -->
+  
+  
+  
+  <div class="col-xs-12 col-sm-9 col-md-9 note">
+	
+
+	  <!-- content -->
+	  <p class="text-danger">© 本文版权归作者Link 所有，转载请注明出处。</p>
+
+<h2 id="SQL运行原理"><a href="#SQL运行原理" class="headerlink" title="SQL运行原理"></a>SQL运行原理</h2><ol>
+<li>准备表格<ol>
+<li>复制源数据进行连接，筛选；<ol>
+<li>FROM</li>
+<li>JOIN：连接表格；</li>
+<li>WHERE：将数据按以下条件筛选；</li>
+</ol>
+</li>
+<li>如果需要聚合运算，则基于连接、筛选好的数据，创建“数据透视表”；<ol>
+<li>GROUP BY：按以下字段和条件<strong>分组</strong>；<ol>
+<li>SQL 中的 GROUP BY 是对数据进行去重合并，为后续聚合运算做准备。要注意：具体的聚合运算还是由聚合函数进行的；</li>
+</ol>
+</li>
+<li>HAVING：在分组后的数据中找到满足以下条件的数据；<ol>
+<li>数据分组后，对<strong>作为分组依据的非聚合字段</strong>和<strong>分组后聚合运算的结果</strong>进行筛选。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>查询字段<ol>
+<li>对准备好的表格进行排序和行数限制；<ol>
+<li>ORDER BY：<ol>
+<li>按照字段的顺序对表格的行进行排序，SQL中默认升序，降序要在字段后加 DESC（descent）；</li>
+</ol>
+</li>
+<li>LIMIT：留下指定行数或指定位置的数据；<ol>
+<li>LIMIT n，则返回前 n 行，如 LIMIT 10，返回前 10 行；</li>
+<li>LIMIT x, y，则从第 x 行后返回 y 行，如 LIMIT 10, 2，则会返回第11和12行；</li>
+<li>常用来取固定名次的数据，或进行数据的初步查看</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>查询表格中的字段，并基于已有的字段进行计算；<ol>
+<li>SELECT</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>处理函数<ol>
+<li>DISTINCT：去重，去重计数 COUNT(DISTINCT xx)；<ol>
+<li>SQL 中的 DISTINCT 实际是删除操作，把重复的都删去；</li>
+</ol>
+</li>
+<li>LIKE、%通配符、_占位符模糊查询；</li>
+<li>聚合函数；</li>
+<li>CASE WHEN 条件判断函数；</li>
+<li>COALESCE()空值处理函数</li>
+<li>OVER()窗口函数； </li>
+</ol>
+</li>
+</ol>
+<h2 id="SQL代码规范"><a href="#SQL代码规范" class="headerlink" title="SQL代码规范"></a>SQL代码规范</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ol>
+<li><p>单行注释：–</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> col_name <span class="comment">-- 这是一条注释</span></span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>多行注释：/* 注释内容 */</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*SELECT col_name </span></span><br><span class="line"><span class="comment">FROM table_name;*/</span></span><br><span class="line"><span class="keyword">SELECT</span> col_2 </span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="其他规范"><a href="#其他规范" class="headerlink" title="其他规范"></a>其他规范</h3><ol>
+<li>SQL语句不区分大小写，因此 SELECT 与 select 甚至是 SeLect 的效果是相同的，但是要对命令和变量进行区分，所以默认命令需要大写，其他内容如变量等则需要小写</li>
+<li>表和变量名中不要出现空格，可使用下划线_替代</li>
+<li>查询语句中，使用单一空格隔开命令和变量</li>
+<li>逗号写在字段前面</li>
+<li>注意换行</li>
+<li>核心语句的内容能写在一行尽量写在一行</li>
+<li>WHERE 语句过长时，每个都要换行</li>
+<li>注意缩进：CASE WHEN 同一级别的条件，子查询，别名尽量统一缩进，代码结束处加;</li>
+</ol>
+<h2 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h2><p>聚合函数：有时候我们只是需要获取数据的汇总信息，比如行数、平均值，并不需要把所有数据都检索出来。为此，SQL提供了专门的函数，这也是SQL最强大功能之一。</p>
+<p>SQL的聚合函数如下：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AVG()</td>
+<td>返回某列的均值</td>
+</tr>
+<tr>
+<td>COUNT()</td>
+<td>返回某列的行数</td>
+</tr>
+<tr>
+<td>MAX()</td>
+<td>返回某列的最大值</td>
+</tr>
+<tr>
+<td>MIN()</td>
+<td>返回某列的最小值</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>返回某列的和</td>
+</tr>
+</tbody></table>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>重要的是逻辑</p>
+<ol>
+<li>子查询就是将一个查询（子查询）的结果，作为另一个查询（主查询）的<strong>数据来源</strong>或<strong>判断条件</strong>的查询。</li>
+<li>常见的子查询有 WHERE 子查询，FROM 子查询，SELECT 子查询，EXISTS 子查询，子查询要用小括号 ()；<ul>
+<li>【好文详解】<a href="https://www.cnblogs.com/fzxey/p/10896244.html" target="_blank" rel="noopener">SQL中的子查询</a></li>
+</ul>
+</li>
+<li>如果感觉一次查询无法完成，就使用子查询，然后再逐步优化。</li>
+</ol>
+<h2 id="表连接"><a href="#表连接" class="headerlink" title="表连接"></a>表连接</h2><p>脑海里一定要有两个具象化的表格</p>
+<p>JOIN</p>
+<ul>
+<li>【好文详解】<a href="https://www.cnblogs.com/reaptomorrow-flydream/p/8145610.html" target="_blank" rel="noopener">SQL的各种连接JOIN详解</a></li>
+</ul>
+<h2 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h2><h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h3><p>插入新记录</p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;(字段<span class="number">1</span>, 字段<span class="number">2</span>, ...) <span class="keyword">VALUES</span>(值<span class="number">1</span>, 值<span class="number">2</span>, ...);</span><br><span class="line"><span class="comment">-- 添加一条新记录</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> world(<span class="keyword">name</span>, continent, population) <span class="keyword">VALUES</span>(<span class="string">'New York'</span>, <span class="string">'Asia'</span>, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world;</span><br></pre></td></tr></table></figure>
+
+<p>可以一次性添加多条记录，只需要在 VALUE 子句中指定多个记录值，每个记录值是由 (…) 包含的一组值。</p>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1179611138358240" target="_blank" rel="noopener">廖雪峰：SQL教程-INSERT</a></li>
+</ul>
+<h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h3><p>更新已有记录</p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> &lt;表名&gt; <span class="keyword">SET</span> 字段<span class="number">1</span>=值<span class="number">1</span>, 字段<span class="number">2</span>=值<span class="number">2</span>, ... <span class="keyword">WHERE</span> ...;</span><br><span class="line"><span class="comment">-- 更新 id=1 的记录</span></span><br><span class="line"><span class="keyword">UPDATE</span> world <span class="keyword">SET</span> <span class="keyword">name</span> = <span class="string">'New York'</span>, continent = <span class="string">'Asia'</span>, population = <span class="number">1000</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以一次性更新多条记录，通过 WHERE 条件。</p>
+<p>更新字段可以用表达式，比如亚洲的国家人口都加一百万（6个0）。</p>
+<p>注意：UPDATE 语句中如果没有 WHERE 条件，那么，整个表的所有记录都会更新。</p>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1179611161425120" target="_blank" rel="noopener">廖雪峰：SQL教程-UPDATE</a></li>
+</ul>
+<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h3><p>删除已有记录</p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> &lt;表名&gt; <span class="keyword">WHERE</span> ...;</span><br><span class="line"><span class="comment">-- 删除 id=1 的记录</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> world <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可以一次性删除多条记录，通过 WHERE 条件。</p>
+<p>注意：DELETE 语句中如果没有 WHERE 条件，那么，整个表的所有记录都会被删除。</p>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1179611171910432" target="_blank" rel="noopener">廖雪峰：SQL教程-DELETE</a></li>
+</ul>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ol>
+<li><a href="https://mubu.com/doc/4BHMMbbvIMb" target="_blank" rel="noopener">戴师兄3天SQL入门教程刷题链接</a></li>
+<li><a href="https://mubu.com/doc/uf3vg8s5ar" target="_blank" rel="noopener">元旦3天SQL特训营</a></li>
+<li><a href="https://mubu.com/doc/eGQ0OKyH2w" target="_blank" rel="noopener">SQL学习总结</a></li>
+</ol>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+			
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2021 Link
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
