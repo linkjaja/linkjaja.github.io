@@ -1,79 +1,185 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>Git 向导 | Latehour Beer</title>
-  <meta name="author" content="Link">
-  
-  <meta name="description" content="© 本文版权归作者Link 所有，转载请注明出处。
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>Git 向导 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="Git">
 
 
 
-Git 是什么？Git 是一个分布式版本控制系统（Distributed Version Control System），客户端并不只提取最新版本的文件快照， 而是把代码仓库完整地镜像下来，包括完整的历史记录。
-四个特点：
 
-直接记录快照，而">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="© 本文版权归作者Link 所有，转载请注明出处。    Git 是什么？Git 是一个分布式版本控制系统（Distributed Version Control System），客户端并不只提取最新版本的文件快照， 而是把代码仓库完整地镜像下来，包括完整的历史记录。 四个特点：  直接记录快照，而非差异比较； 近乎所有操作都是本地执行； Git 保证完整性； Git 一般只添加数据；  Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 向导">
+<meta property="og:url" content="https://linkjaja.github.io/2021/05/05/git-guide/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="© 本文版权归作者Link 所有，转载请注明出处。    Git 是什么？Git 是一个分布式版本控制系统（Distributed Version Control System），客户端并不只提取最新版本的文件快照， 而是把代码仓库完整地镜像下来，包括完整的历史记录。 四个特点：  直接记录快照，而非差异比较； 近乎所有操作都是本地执行； Git 保证完整性； Git 一般只添加数据；  Git">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.imgdb.cn/item/60924ef8d1a9ae528f1e4864.jpg">
+<meta property="article:published_time" content="2021-05-04T21:40:14.000Z">
+<meta property="article:modified_time" content="2021-05-05T07:53:56.626Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.imgdb.cn/item/60924ef8d1a9ae528f1e4864.jpg">
 
-  <meta property="og:title" content="Git 向导"/>
-  <meta property="og:site_name" content="Latehour Beer"/>
 
-  
-    <meta property="og:image" content=""/>
-  
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
 
-  
-    <link rel="alternative" href="/atom.xml" title="Latehour Beer" type="application/atom+xml">
-  
-  
-    <link href="/favicon.ico" rel="icon">
-  
-  
-  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
-  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/monokai.css" media="none">
+        
+    
 
-  <script src="/js/jquery-2.0.3.min.js"></script>
+    
+    
 
-  <!-- analytics -->
-  
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
 
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="body" data-spy="scroll" data-target=".toc">
-  <div class="container" id="container">
-	<div class="content">
-	  <div class="page-header">		
-  <h1><a class="brand" href="/">Latehour Beer</a><span class="split"></span><span class="title">Git 向导</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2021-05-05</span></h1>
-</div>		
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">主页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/categories/" class="navbar-menu button">分类</a>
+                
+                    <a href="/archives/" class="navbar-menu button">档案</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
 
-<div class="row page">
-  <!-- cols -->	
-  
-  <div class="col-xs-12 col-sm-3 col-md-3 toc"> 
-	<!-- toc -->
-<script type="text/javascript">
-		jQuery(document).ready(function() {
- 		   generateWikiTOC('.note', '.toc',  2 , 2 );
-		});
-</script>
-  </div><!-- col-md-3 -->
-  
-  
-  
-  <div class="col-xs-12 col-sm-9 col-md-9 note">
-	
 
-	  <!-- content -->
-	  <p class="text-danger">© 本文版权归作者Link 所有，转载请注明出处。</p>
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">主页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">分类</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">档案</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        Git 向导
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/05/" class="post-meta__date button">2021-05-05</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Git/" class="button">Git</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-是什么？"><span class="toc-text">Git 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-的工作流程"><span class="toc-text">Git 的工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#专业名词"><span class="toc-text">专业名词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建代码库"><span class="toc-text">新建代码库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#From-existing-data"><span class="toc-text">From existing data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#From-existing-repository"><span class="toc-text">From existing repository</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-status"><span class="toc-text">本地变动 – git status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-diff"><span class="toc-text">本地变动 – git diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-add"><span class="toc-text">本地变动 – git add</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-rm"><span class="toc-text">本地变动 – git rm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-mv"><span class="toc-text">本地变动 – git mv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-commit"><span class="toc-text">提交到本地仓库 – git commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-log"><span class="toc-text">提交到本地仓库 – git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-reflog"><span class="toc-text">提交到本地仓库 – git reflog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-blame"><span class="toc-text">提交到本地仓库 – git blame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程仓库-–-拉取到本地"><span class="toc-text">远程仓库 – 拉取到本地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程仓库-–-推送到远程"><span class="toc-text">远程仓库 – 推送到远程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支-–-git-branch"><span class="toc-text">分支 – git branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支-–-git-rebase"><span class="toc-text">分支 – git rebase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-git-revert"><span class="toc-text">回滚 – git revert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-git-checkout"><span class="toc-text">回滚 – git checkout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-git-reset"><span class="toc-text">回滚 – git reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-具体场景"><span class="toc-text">回滚 – 具体场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标签"><span class="toc-text">标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-的-GUI-工具"><span class="toc-text">Git 的 GUI 工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SourceTree"><span class="toc-text">SourceTree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IntelliJ-IDEA-中的-Git"><span class="toc-text">IntelliJ IDEA 中的 Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关链接"><span class="toc-text">相关链接</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-是什么？"><span class="toc-text">Git 是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-的工作流程"><span class="toc-text">Git 的工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#专业名词"><span class="toc-text">专业名词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建代码库"><span class="toc-text">新建代码库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#From-existing-data"><span class="toc-text">From existing data</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#From-existing-repository"><span class="toc-text">From existing repository</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-status"><span class="toc-text">本地变动 – git status</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-diff"><span class="toc-text">本地变动 – git diff</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-add"><span class="toc-text">本地变动 – git add</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-rm"><span class="toc-text">本地变动 – git rm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地变动-–-git-mv"><span class="toc-text">本地变动 – git mv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-commit"><span class="toc-text">提交到本地仓库 – git commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-log"><span class="toc-text">提交到本地仓库 – git log</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-reflog"><span class="toc-text">提交到本地仓库 – git reflog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交到本地仓库-–-git-blame"><span class="toc-text">提交到本地仓库 – git blame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程仓库-–-拉取到本地"><span class="toc-text">远程仓库 – 拉取到本地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程仓库-–-推送到远程"><span class="toc-text">远程仓库 – 推送到远程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支-–-git-branch"><span class="toc-text">分支 – git branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支-–-git-rebase"><span class="toc-text">分支 – git rebase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-git-revert"><span class="toc-text">回滚 – git revert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-git-checkout"><span class="toc-text">回滚 – git checkout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-git-reset"><span class="toc-text">回滚 – git reset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚-–-具体场景"><span class="toc-text">回滚 – 具体场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标签"><span class="toc-text">标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-的-GUI-工具"><span class="toc-text">Git 的 GUI 工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SourceTree"><span class="toc-text">SourceTree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IntelliJ-IDEA-中的-Git"><span class="toc-text">IntelliJ IDEA 中的 Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关链接"><span class="toc-text">相关链接</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p class="text-danger">© 本文版权归作者Link 所有，转载请注明出处。</p>
 
 
 
@@ -431,97 +537,176 @@ Git 是什么？Git 是一个分布式版本控制系统（Distributed Version C
 <li><p><a href="https://github.com/flyhigher139/Git-Cheat-Sheet" target="_blank" rel="noopener">Git Cheat Sheet 中文版</a>: translated by Gevin.</p>
 </li>
 </ol>
-	  
 
-	  <div>
-  		<center>
-		  <div class="pagination">
-<ul class="pagination">
-	
-	
-	
-	
-	
-	
-		
-			
-			
-		
-	
-		
-	
-		
-	
-		
-	
-		
-	
-		
-	
-		
-	
-	
-	
-		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
-	
-	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
-	
-		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
-	
-</ul>
-</div>
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2021/05/05/git-guide/">https://linkjaja.github.io/2021/05/05/git-guide/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
 
-		</center>
-	  </div>
-	  
-	</div> <!-- col-md-9/col-md-12 -->
-	
-  </div><!-- row -->
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2021-05-05</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Git/" class="post-tags__link button"># Git</a></div> 
+</article>
 
-	</div>
-  </div>
-  <div class="container-narrow">
-	<footer> <p>
-  &copy; 2022 Link
-  
-      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/" target="_blank" rel="noopener">Wixo</a>.    
-</p> </footer>
-  </div> <!-- container-narrow -->
-  
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
 
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery.tableofcontents.min.js"></script>
-<script src="/js/tocgenerator.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/search.js"></script> 
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2021/05/02/lc509/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            力扣509.斐波那契数列
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
 
 
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2021&nbsp;-&nbsp;2022 <a href="/">Latehour Beer</a>
+        </p>
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
 
 
 
-   <script type="text/javascript">      
-     var search_path = "search.xml";
-	 if (search_path.length == 0) {
-	 	search_path = "search.xml";
-	 }
-	 var path = "/" + search_path;
-     searchFunc(path, 'local-search-input', 'local-search-result');
-   </script>
+ 
 
 
-</body>
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
 </html>
