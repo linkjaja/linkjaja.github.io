@@ -41,7 +41,7 @@
 <meta property="og:description" content="© 本文版权归作者Link 所有，转载请注明出处。  SQL运行原理 准备表格 复制源数据进行连接，筛选； FROM JOIN：连接表格； WHERE：将数据按以下条件筛选；   如果需要聚合运算，则基于连接、筛选好的数据，创建“数据透视表”； GROUP BY：按以下字段和条件分组； SQL 中的 GROUP BY 是对数据进行去重合并，为后续聚合运算做准备。要注意：具体的聚合运算还是由聚合函数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-10T16:37:24.000Z">
-<meta property="article:modified_time" content="2021-04-10T16:43:06.629Z">
+<meta property="article:modified_time" content="2021-04-10T16:43:08.000Z">
 <meta property="article:author" content="Link">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -52,9 +52,7 @@
 
     
     
-        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" >
-        
-            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/monokai.css" media="none">
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
         
     
 
@@ -62,13 +60,6 @@
     
 
     
-    
-<link rel="stylesheet" href="/css/style/dark.css">
-
-    
-<script src="/js/darkmode.js"></script>
-
-
 
      
 
@@ -88,41 +79,33 @@
         
             <div class="navbar__menus">
                 
-                    <a href="/" class="navbar-menu button">主页</a>
+                    <a href="/tags/" class="navbar-menu button">tags</a>
                 
-                    <a href="/tags/" class="navbar-menu button">标签</a>
+                    <a href="/categories/" class="navbar-menu button">categories</a>
                 
-                    <a href="/categories/" class="navbar-menu button">分类</a>
-                
-                    <a href="/archives/" class="navbar-menu button">档案</a>
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
                 
             </div>
         
         
         
     <a href="/search/" id="btn-search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
     </a>
 
 
         
         
-    <a href="javaScript:void(0);" id="btn-toggle-dark">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-    </a>
-
 
         
             <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
             <div class="dropdown-menus" id="dropdown-menus">
                 
-                    <a href="/" class="dropdown-menu button">主页</a>
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
                 
-                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
                 
-                    <a href="/categories/" class="dropdown-menu button">分类</a>
-                
-                    <a href="/archives/" class="dropdown-menu button">档案</a>
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
                 
             </div>
         
@@ -232,7 +215,7 @@
 </ol>
 <h2 id="SQL代码规范"><a href="#SQL代码规范" class="headerlink" title="SQL代码规范"></a>SQL代码规范</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><ol>
 <li><p>单行注释：–</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> col_name <span class="comment">-- 这是一条注释</span></span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> col_name <span class="comment">-- 这是一条注释</span></span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -240,7 +223,7 @@
 </ol>
 <ol start="2">
 <li><p>多行注释：/* 注释内容 */</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*SELECT col_name </span></span><br><span class="line"><span class="comment">FROM table_name;*/</span></span><br><span class="line"><span class="keyword">SELECT</span> col_2 </span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*SELECT col_name </span></span><br><span class="line"><span class="comment">FROM table_name;*/</span></span><br><span class="line"><span class="keyword">SELECT</span> col_2 </span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -302,7 +285,7 @@
 </ul>
 <h2 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h2><h3 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h3><p>插入新记录</p>
 <p>语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;(字段<span class="number">1</span>, 字段<span class="number">2</span>, ...) <span class="keyword">VALUES</span>(值<span class="number">1</span>, 值<span class="number">2</span>, ...);</span><br><span class="line"><span class="comment">-- 添加一条新记录</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> world(<span class="keyword">name</span>, continent, population) <span class="keyword">VALUES</span>(<span class="string">'New York'</span>, <span class="string">'Asia'</span>, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;表名&gt;(字段<span class="number">1</span>, 字段<span class="number">2</span>, ...) <span class="keyword">VALUES</span>(值<span class="number">1</span>, 值<span class="number">2</span>, ...);</span><br><span class="line"><span class="comment">-- 添加一条新记录</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> world(<span class="keyword">name</span>, continent, population) <span class="keyword">VALUES</span>(<span class="string">'New York'</span>, <span class="string">'Asia'</span>, <span class="number">1000</span>);</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world;</span><br></pre></td></tr></table></figure>
 
 <p>可以一次性添加多条记录，只需要在 VALUE 子句中指定多个记录值，每个记录值是由 (…) 包含的一组值。</p>
 <ul>
@@ -310,7 +293,7 @@
 </ul>
 <h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h3><p>更新已有记录</p>
 <p>语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> &lt;表名&gt; <span class="keyword">SET</span> 字段<span class="number">1</span>=值<span class="number">1</span>, 字段<span class="number">2</span>=值<span class="number">2</span>, ... <span class="keyword">WHERE</span> ...;</span><br><span class="line"><span class="comment">-- 更新 id=1 的记录</span></span><br><span class="line"><span class="keyword">UPDATE</span> world <span class="keyword">SET</span> <span class="keyword">name</span> = <span class="string">'New York'</span>, continent = <span class="string">'Asia'</span>, population = <span class="number">1000</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> &lt;表名&gt; <span class="keyword">SET</span> 字段<span class="number">1</span>=值<span class="number">1</span>, 字段<span class="number">2</span>=值<span class="number">2</span>, ... <span class="keyword">WHERE</span> ...;</span><br><span class="line"><span class="comment">-- 更新 id=1 的记录</span></span><br><span class="line"><span class="keyword">UPDATE</span> world <span class="keyword">SET</span> <span class="keyword">name</span> = <span class="string">'New York'</span>, continent = <span class="string">'Asia'</span>, population = <span class="number">1000</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
 <p>可以一次性更新多条记录，通过 WHERE 条件。</p>
 <p>更新字段可以用表达式，比如亚洲的国家人口都加一百万（6个0）。</p>
@@ -320,7 +303,7 @@
 </ul>
 <h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h3><p>删除已有记录</p>
 <p>语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> &lt;表名&gt; <span class="keyword">WHERE</span> ...;</span><br><span class="line"><span class="comment">-- 删除 id=1 的记录</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> world <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> &lt;表名&gt; <span class="keyword">WHERE</span> ...;</span><br><span class="line"><span class="comment">-- 删除 id=1 的记录</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> world <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line"><span class="comment">-- 查询看看</span></span><br><span class="line"><span class="keyword">SELECT</span> * </span><br><span class="line"><span class="keyword">FROM</span> world </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
 <p>可以一次性删除多条记录，通过 WHERE 条件。</p>
 <p>注意：DELETE 语句中如果没有 WHERE 条件，那么，整个表的所有记录都会被删除。</p>
