@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>test</title>
+      <link href="/2022/05/19/test/"/>
+      <url>/2022/05/19/test/</url>
+      
+        <content type="html"><![CDATA[<p>这是文章的摘要</p><a id="more"></a><p>这是文章的正文</p><p><img src="./test/test.png" class="lazy" data-srcset="./test/test.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20220519193518529"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git 向导</title>
       <link href="/2021/05/05/git-guide/"/>
       <url>/2021/05/05/git-guide/</url>
