@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>剑指 Offer II 001. 整数除法 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="Bitwise, Simulation">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Introduce题干给定两个整数 a 和 b ，求它们的除法的商 a&#x2F;b ，要求不得使用乘号 &#39;*&#39;、除号 &#39;&#x2F;&#39; 以及求余符号 &#39;%&#39; 。  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;xoh6Oh&#x2F;      例子： 输入：a &#x3D; 15, b &#x3D; 2输出：7解释：15&#x2F;2 &#x3D; truncate(7.5) &#x3D; 7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指 Offer II 001. 整数除法">
+<meta property="og:url" content="https://linkjaja.github.io/2022/05/31/jzii001/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="Introduce题干给定两个整数 a 和 b ，求它们的除法的商 a&#x2F;b ，要求不得使用乘号 &#39;*&#39;、除号 &#39;&#x2F;&#39; 以及求余符号 &#39;%&#39; 。  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;xoh6Oh&#x2F;      例子： 输入：a &#x3D; 15, b &#x3D; 2输出：7解释：15&#x2F;2 &#x3D; truncate(7.5) &#x3D; 7">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-31T12:46:28.000Z">
+<meta property="article:modified_time" content="2022-06-01T13:51:39.074Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="Bitwise">
+<meta property="article:tag" content="Simulation">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/tags/" class="navbar-menu button">tags</a>
+                
+                    <a href="/categories/" class="navbar-menu button">categories</a>
+                
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        剑指 Offer II 001. 整数除法
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/05/" class="post-meta__date button">2022-05-31</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-brute-force"><span class="toc-text">Solution 1 (brute force)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-bit-wise-amp-simulation"><span class="toc-text">Solution 2 (bit wise &amp; simulation)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought-1"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amended-version-of-Solution2"><span class="toc-text">Amended version of Solution2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-2"><span class="toc-text">Code</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-brute-force"><span class="toc-text">Solution 1 (brute force)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-bit-wise-amp-simulation"><span class="toc-text">Solution 2 (bit wise &amp; simulation)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought-1"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amended-version-of-Solution2"><span class="toc-text">Amended version of Solution2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-2"><span class="toc-text">Code</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            This article was last updated on &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; days ago, the information described in the article may be outdated.
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-06-01"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给定两个整数 <code>a</code> 和 <code>b</code> ，求它们的除法的商 <code>a/b</code> ，要求不得使用乘号 <code>&#39;*&#39;</code>、除号 <code>&#39;/&#39;</code> 以及求余符号 <code>&#39;%&#39;</code> 。</p>
+<blockquote>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xoh6Oh/">https://leetcode-cn.com/problems/xoh6Oh/</a></p>
+</blockquote>
+</div></blockquote>
+
+
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">输入：a = 15, b = 2</span><br><span class="line">输出：7</span><br><span class="line">解释：15/2 = truncate(7.5) = 7</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-note blockquote-note__caution"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></div>注意</div><div class="blockquote-note__content"><ul>
+<li><p>整数除法的结果应当截去（<code>truncate</code>）其小数部分，例如：<code>truncate(8.345) = 8</code> 以及 <code>truncate(-2.7335) = -2</code>；</p>
+</li>
+<li><p>假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−2<sup>31</sup>, 2<sup>31</sup>−1]。本题中，如果除法结果溢出，则返回 2<sup>31</sup> − 1；</p>
+</li>
+<li><p>-2<sup>31</sup> &lt;&#x3D; a, b &lt;&#x3D; 2<sup>31</sup> - 1；</p>
+</li>
+<li><p>b !&#x3D; 0；</p>
+</li>
+</ul>
+</div></blockquote>
+
+
+
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-brute-force"><a href="#Solution-1-brute-force" class="headerlink" title="Solution 1 (brute force)"></a>Solution 1 (brute force)</h3><blockquote>
+<p>不进行模拟，也不进行位运算。直观。</p>
+</blockquote>
+<p>题目要求<code>a</code>除以<code>b</code>的商，且截去小数部分，可以理解为 <code>a</code> 等价于<code> n * b + c（c &lt; b）</code>，用减法来实现乘法。</p>
+<p>思想很简单，但是实现的时候要注意：</p>
+<ol>
+<li>越界问题，int 类型的范围；</li>
+<li>返回结果的正负号，计算的环境（正 or 负）；</li>
+</ol>
+<h4 id="Work-amp-Thought"><a href="#Work-amp-Thought" class="headerlink" title="Work &amp; Thought"></a><strong>Work &amp; Thought</strong></h4><ol>
+<li><p>越界的讨论，本题是整数除法（c must &lt;&#x3D; a），所以溢出的情况只有一个，就是 −2<sup>31</sup> &#x2F; -1，它的结果 2<sup>31</sup> 越界了，根据题目，需要特殊处理返回2<sup>31</sup> − 1；</p>
+<ul>
+<li>还有一种情况，如果是在正数的计算环境中，a&#x3D;−2<sup>31</sup>，a在转变成正数的时候，变成2<sup>31</sup>，溢出了。所以，要么都变负数，要么特殊情况拎出来讨论。</li>
+</ul>
+</li>
+<li><p>结果的正负号，可以先记好，只有在它俩异号的时候商是负号，就是它俩一个负数 or 一个正数，用一个变量记下，之后统一计算的环境，进行计算；</p>
+</li>
+</ol>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// repalce a with dividend, replace b with divisor, for better understanding.</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">divide</span><span class="params">(<span class="type">int</span> dividend, <span class="type">int</span> divisor)</span> &#123;</span><br><span class="line">    <span class="comment">// cornor case</span></span><br><span class="line">    <span class="keyword">if</span>(dividend == Integer.MIN_VALUE &amp;&amp; divisor == -<span class="number">1</span>) <span class="keyword">return</span>  Integer.MAX_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// swicth dividend, divisor to negative numbers to avoid situations like cross boundary.</span></span><br><span class="line">    <span class="comment">// notes: Math.abs() would return wrong answer if dividend or divisor is Integer.MIN_VALUE.</span></span><br><span class="line">    <span class="keyword">if</span>(dividend &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        flag--;</span><br><span class="line">        dividend = -dividend;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(divisor &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        flag--;</span><br><span class="line">        divisor = -divisor;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(dividend &lt;= divisor)&#123;</span><br><span class="line">        dividend = dividend - divisor;</span><br><span class="line">        result ++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">return</span> <span class="variable">flag</span> <span class="operator">=</span>= <span class="number">1</span> ? -result : result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p>time complexity: O( ) 难以具体地给出；space complexity: O(1)；</p>
+<p>计算量太大，最坏情况如果<code>a</code>是 −2<sup>31</sup>，<code>b</code>是 1，计算出商，需要算很多次。</p>
+<p><strong>在超时的边缘试探，leetcode 很难跑过。</strong></p>
+<p>特点是思路直观，因为 Java 语言的特点，需要考虑 int 越界这个因素，在结果输出和计算的时候都要考虑到这一点，是本题的难点。</p>
+<h3 id="Solution-2-bit-wise-amp-simulation"><a href="#Solution-2-bit-wise-amp-simulation" class="headerlink" title="Solution 2 (bit wise &amp; simulation)"></a>Solution 2 (bit wise &amp; simulation)</h3><h4 id="Work-amp-Thought-1"><a href="#Work-amp-Thought-1" class="headerlink" title="Work &amp; Thought"></a><strong>Work &amp; Thought</strong></h4><ol>
+<li><p>对于 int 越界问题，和 Solution 1 差不多的解法，先筛掉特殊情况，之后使用负数的计算环境；</p>
+<ul>
+<li>如果要用正数计算环境，需要把传入的参数 a，b 强制转型为 long；</li>
+</ul>
+</li>
+<li><p>返回结果的正负号问题：</p>
+<ul>
+<li><p>铺垫：</p>
+<p>位运算的<code>异或</code>（不同是1）和<code>与</code>（同时为1是1），<code>Integer.MIN_VALUE</code>是负数，最高位为<code>1</code>；</p>
+<table>
+<thead>
+<tr>
+<th><code>Integer.MIN_VALUE</code></th>
+<th>-2147483648</th>
+<th>1-0000 0000 0000 0000 0000 0000 0000 000</th>
+</tr>
+</thead>
+</table>
+</li>
+<li><p>a ^ b 解释：若a，b同号，0xxxx，若异号，1xxxx，这时和 <code>Integer.MIN_VALUE</code> 进行与运算，除了最高位，其它位均清0，得到结果 0（ab同号） or 1（ab异号）；</p>
+</li>
+<li><p>也可以这样：a ^ b &gt;&#x3D; 0，若大于0，就是异号，反之，就是同号，因为最高位是符号位；</p>
+</li>
+<li><p>相比于 Solution 1 的 flag，这个解法能体现位运算的知识储备。</p>
+</li>
+</ul>
+</li>
+<li><p>simulation 部分：模拟除法的手写算式（二进制），本质还是减法，但是里面的一层用二进制，这样就可以用移位运算，省到log级别的时间复杂度。</p>
+</li>
+</ol>
+<h4 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">divide</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="comment">// cornor case</span></span><br><span class="line">    <span class="keyword">if</span>(a == Integer.MIN_VALUE &amp;&amp; b == -<span class="number">1</span>) <span class="keyword">return</span>  Integer.MAX_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">signBit</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>, x = a, y = b;</span><br><span class="line">    </span><br><span class="line">    x = x &lt; <span class="number">0</span> ? -x : x;</span><br><span class="line">    y = y &lt; <span class="number">0</span> ? -y : y;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (x &gt;= y) &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">cnt</span> <span class="operator">=</span> <span class="number">1</span>, base = y;</span><br><span class="line">        <span class="keyword">while</span> (x &gt; (base &lt;&lt; <span class="number">1</span>)) &#123;</span><br><span class="line">            cnt &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">            base &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += cnt;</span><br><span class="line">        x -= base;</span><br><span class="line">    &#125;</span><br><span class="line">    ans = (((a ^ b) &amp; signBit) == <span class="number">0</span>) ? ans : -ans;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)ans;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought-1"><a href="#Afterthought-1" class="headerlink" title="Afterthought"></a>Afterthought</h4><p>time complexity: O( logn) 难以具体地给出；space complexity: O(1)；</p>
+<p>针对 int 越界的问题，用了 long，一些情况下可能会限制使用 long。</p>
+<p><strong>跑很快。</strong></p>
+<p>特点是移位运算，里面的一层循环要理清，算是难点。</p>
+<p>商的正负号判断，相比于对 a，b 进行大于 0 小于 0 来说亮眼了，但是普通方法也是完全可以的。</p>
+<h3 id="Amended-version-of-Solution2"><a href="#Amended-version-of-Solution2" class="headerlink" title="Amended version of Solution2"></a>Amended version of Solution2</h3><p>题目说我们的环境只能存储 32 位有符号整数，所以理论上，使用 long 是不被允许的。</p>
+<p>位运算的环境改成 负数 就可以。</p>
+<h4 id="Code-2"><a href="#Code-2" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">divide</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="comment">// cornor case</span></span><br><span class="line">    <span class="keyword">if</span>(a == Integer.MIN_VALUE &amp;&amp; b == -<span class="number">1</span>) <span class="keyword">return</span>  Integer.MAX_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>, x = a, y = b;</span><br><span class="line">    <span class="comment">// 为避免溢出，转换为负数进行计算</span></span><br><span class="line">    x = x &lt; <span class="number">0</span> ? x : -x;</span><br><span class="line">    y = y &lt; <span class="number">0</span> ? y : -y;</span><br><span class="line"></span><br><span class="line">  	<span class="keyword">while</span> ( x &lt;= y )&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">base</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">divisor</span> <span class="operator">=</span> y;  </span><br><span class="line">      <span class="comment">// 用减法，避免溢出</span></span><br><span class="line">    	<span class="keyword">while</span>(x - divisor &lt;= divisor)&#123;</span><br><span class="line">      	divisor &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">      	base &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    ans += base;</span><br><span class="line">    x -= divisor;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">    ans = ((a ^ b) &gt;= <span class="number">0</span>) ? ans : -ans;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2022/05/31/jzii001/">https://linkjaja.github.io/2022/05/31/jzii001/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-06-01</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Bitwise/" class="post-tags__link button"># Bitwise</a><a href="/tags/Simulation/" class="post-tags__link button"># Simulation</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2021/05/05/git-guide/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Git 向导
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
+</html>
