@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>剑指 Offer II 004. 只出现一次的数字 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="Bitwise, Bitwise_Bit Shifting, Set, HashTable">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Introduce题干给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次 。请你找出并返回那个只出现了一次的元素。  src：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;WGki4K&#x2F;      例子： 输入：nums &#x3D; [2,2,3,2]输出：3  注意 1 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 104 -2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指 Offer II 004. 只出现一次的数字">
+<meta property="og:url" content="https://linkjaja.github.io/2022/06/07/jzii004/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="Introduce题干给你一个整数数组 nums ，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次 。请你找出并返回那个只出现了一次的元素。  src：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;WGki4K&#x2F;      例子： 输入：nums &#x3D; [2,2,3,2]输出：3  注意 1 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 104 -2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/06/07/ZWYdoOLN2aGR9Ur.png">
+<meta property="article:published_time" content="2022-06-07T06:37:32.000Z">
+<meta property="article:modified_time" content="2022-06-07T12:25:36.193Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="Bitwise">
+<meta property="article:tag" content="Bitwise_Bit Shifting">
+<meta property="article:tag" content="Set">
+<meta property="article:tag" content="HashTable">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/07/ZWYdoOLN2aGR9Ur.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/tags/" class="navbar-menu button">tags</a>
+                
+                    <a href="/categories/" class="navbar-menu button">categories</a>
+                
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        剑指 Offer II 004. 只出现一次的数字
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-07</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95%EF%BC%8Cset"><span class="toc-text">Solution 1 (数学方法，set)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-hashtable"><span class="toc-text">Solution 2 (hashtable)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought-1"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-3-bit-wise-bit-shifting"><span class="toc-text">Solution 3 (bit wise, bit shifting)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought-2"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-2"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-2"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-%E6%95%B0%E5%AD%A6%E6%96%B9%E6%B3%95%EF%BC%8Cset"><span class="toc-text">Solution 1 (数学方法，set)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-hashtable"><span class="toc-text">Solution 2 (hashtable)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought-1"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-3-bit-wise-bit-shifting"><span class="toc-text">Solution 3 (bit wise, bit shifting)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought-2"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-2"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-2"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            This article was last updated on &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; days ago, the information described in the article may be outdated.
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-06-07"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给你一个整数数组 <code>nums</code> ，除某个元素仅出现 <strong>一次</strong> 外，其余每个元素都恰出现 <strong>三次 。</strong>请你找出并返回那个只出现了一次的元素。</p>
+<blockquote>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/WGki4K/">https://leetcode.cn/problems/WGki4K/</a></p>
+</blockquote>
+</div></blockquote>
+
+
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,2,3,2]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-note blockquote-note__caution"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></div>注意</div><div class="blockquote-note__content"><ul>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 3 * 10<sup>4</sup></li>
+<li>-2<sup>31</sup>&lt;&#x3D; nums[i] &lt;&#x3D; 2<sup>31</sup> - 1</li>
+<li>nums 中，除某个元素仅出现 一次 外，其余每个元素都恰出现 三次</li>
+</ul>
+<p><strong>进阶：</strong>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
+</div></blockquote>
+
+
+
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-数学方法，set"><a href="#Solution-1-数学方法，set" class="headerlink" title="Solution 1 (数学方法，set)"></a>Solution 1 (数学方法，set)</h3><p>nums 除了目标元素只出现 1 次，剩余的每个元素都出现 3 次，那么可以利用 set 去重来做题。</p>
+<h4 id="Work-amp-Thought"><a href="#Work-amp-Thought" class="headerlink" title="Work &amp; Thought"></a><strong>Work &amp; Thought</strong></h4><p>sumDistinct * 3 - sum &#x3D; target * 2；</p>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        HashSet&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        <span class="type">long</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      	<span class="type">long</span> <span class="variable">sumDistinct</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> cur : nums)&#123;</span><br><span class="line">            set.add(cur);</span><br><span class="line">            sum += cur;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> cur : set)&#123;</span><br><span class="line">            sumDistinct += cur;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> (<span class="type">int</span>)(sumDistinct * <span class="number">3</span> - sum) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>易错点:</strong></p>
+<ul>
+<li>在计算 target 的值时，将会溢出 int 的边界，所以先放到 long 类型的变量里面；</li>
+</ul>
+<p><strong>time complexity:</strong> O(n)，遍历 nums 数组；</p>
+<p><strong>space complexity:</strong> O(n)，存放到 set 中占用的空间；</p>
+<h3 id="Solution-2-hashtable"><a href="#Solution-2-hashtable" class="headerlink" title="Solution 2 (hashtable)"></a>Solution 2 (hashtable)</h3><p>nums 除了目标元素只出现 1 次，剩余的每个元素都出现 3 次，可以用 hashtable 来打表查表。</p>
+<h4 id="Work-amp-Thought-1"><a href="#Work-amp-Thought-1" class="headerlink" title="Work &amp; Thought"></a><strong>Work &amp; Thought</strong></h4><p>用哈希表计数，先遍历数组放，后遍历哈希表查次数为1的key。</p>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数值</td>
+<td>出现次数</td>
+</tr>
+</tbody></table>
+<h4 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    HashMap &lt;Integer, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> cur : nums) map.put(cur, map.getOrDefault(cur, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> cur : map.keySet())&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.get(cur) == <span class="number">1</span>) <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought-1"><a href="#Afterthought-1" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>易错点:</strong></p>
+<ul>
+<li>for each 的写法，关于遍历 hashmap（通过<code>map.keySet()</code>）；</li>
+<li>JDK 1.8 开始可以用 <code>getOrDefault(key, default value)</code>，在要赋默认值的场景下很好用；</li>
+</ul>
+<p><strong>time complexity:</strong> O(n)，遍历 nums 数组；</p>
+<p><strong>space complexity:</strong> O(n)，存放到 hashmap 中占用的空间；</p>
+<h3 id="Solution-3-bit-wise-bit-shifting"><a href="#Solution-3-bit-wise-bit-shifting" class="headerlink" title="Solution 3 (bit wise, bit shifting)"></a>Solution 3 (bit wise, bit shifting)</h3><p>不占用额外的空间。</p>
+<p>二进制的数，比如 1001，出现 3 次，若记录 1 出现的次数，为 3003，之后对其进行 mod 3 操作，就没有余数。</p>
+<h4 id="Work-amp-Thought-2"><a href="#Work-amp-Thought-2" class="headerlink" title="Work &amp; Thought"></a><strong>Work &amp; Thought</strong></h4><p>根据题目，-2<sup>31</sup> &lt;&#x3D; nums[i] &lt;&#x3D; 2<sup>31</sup>- 1，我们可以创建一个 32 位长度的数组 cnt[]，用来记录所有数值的每一位共出现了多少次 1，之后对 cnt[] 数组的每一位进行 mod 3 操作，就可以得到只出现 1 次的值。</p>
+<p><img src="https://s2.loli.net/2022/06/07/ZWYdoOLN2aGR9Ur.png" alt="1629222207-BVIXuz-image.png"></p>
+<h4 id="Code-2"><a href="#Code-2" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">singleNumber</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] cnt = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">32</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> cur : nums)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">32</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur &gt;&gt; i != <span class="number">0</span>) cnt[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">32</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt[i] % <span class="number">3</span> != <span class="number">0</span>) ans += <span class="number">1</span> &lt;&lt; i; <span class="comment">// ans |= 1 &lt;&lt; i also works</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought-2"><a href="#Afterthought-2" class="headerlink" title="Afterthought"></a>Afterthought</h4><table>
+<thead>
+<tr>
+<th>运算符的优先级</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&gt;&gt;</code> ， <code>&amp;</code></td>
+<td><code>&gt;&gt;</code> 优先于  <code>&amp;</code> ，所以<code>(cur &gt;&gt; i) &amp; 1</code>不加括号也对</td>
+</tr>
+<tr>
+<td><code>%</code> ，<code>&amp;</code></td>
+<td><code>%</code> 优先于 <code>&amp;</code>，也就是乘除优先于逻辑</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;</code> ， <code>+=</code></td>
+<td><code>&lt;&lt;</code> 优先于  <code>+=</code> ，也就是位优先于赋值，所以<code>ans += (1 &lt;&lt; i)</code>不加括号也对</td>
+</tr>
+</tbody></table>
+<ul>
+<li>数每一位出现1的次数，可用移位<code>cur &gt;&gt; i == 1</code> 来实现；</li>
+</ul>
+<p><strong>time complexity:</strong> O(n)，遍历 nums 数组；</p>
+<p><strong>space complexity:</strong> O(1)，常数的空间申请；</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>qingfengpython 链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/WGki4K/solution/shua-chuan-jian-zhi-offer-day02-zheng-sh-tlce/">https://leetcode.cn/problems/WGki4K/solution/shua-chuan-jian-zhi-offer-day02-zheng-sh-tlce/</a></li>
+</ul>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2022/06/07/jzii004/">https://linkjaja.github.io/2022/06/07/jzii004/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-06-07</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Bitwise/" class="post-tags__link button"># Bitwise</a><a href="/tags/Bitwise-Bit-Shifting/" class="post-tags__link button"># Bitwise_Bit Shifting</a><a href="/tags/Set/" class="post-tags__link button"># Set</a><a href="/tags/HashTable/" class="post-tags__link button"># HashTable</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/06/06/jzii003/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 003. 前 n 个数字二进制中 1 的个数
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
+</html>
