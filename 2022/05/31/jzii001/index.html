@@ -28,7 +28,7 @@
 <title>剑指 Offer II 001. 整数除法 | Latehour Beer</title>
 
 
-    <meta name="keywords" content="Bitwise, Simulation">
+    <meta name="keywords" content="Bitwise, Simulation, Bitwise_Bit Shifting">
 
 
 
@@ -43,10 +43,11 @@
 <meta property="og:description" content="Introduce题干给定两个整数 a 和 b ，求它们的除法的商 a&#x2F;b ，要求不得使用乘号 &#39;*&#39;、除号 &#39;&#x2F;&#39; 以及求余符号 &#39;%&#39; 。  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;xoh6Oh&#x2F;      例子： 输入：a &#x3D; 15, b &#x3D; 2输出：7解释：15&#x2F;2 &#x3D; truncate(7.5) &#x3D; 7">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-31T12:46:28.000Z">
-<meta property="article:modified_time" content="2022-06-01T13:51:39.074Z">
+<meta property="article:modified_time" content="2022-06-07T05:07:26.354Z">
 <meta property="article:author" content="Link">
 <meta property="article:tag" content="Bitwise">
 <meta property="article:tag" content="Simulation">
+<meta property="article:tag" content="Bitwise_Bit Shifting">
 <meta name="twitter:card" content="summary_large_image">
 
 
@@ -167,7 +168,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2022-06-01"),
+            var update = Date.parse("2022-06-07"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -262,7 +263,7 @@
 </ol>
 <h4 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">divide</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="comment">// cornor case</span></span><br><span class="line">    <span class="keyword">if</span>(a == Integer.MIN_VALUE &amp;&amp; b == -<span class="number">1</span>) <span class="keyword">return</span>  Integer.MAX_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">signBit</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>, x = a, y = b;</span><br><span class="line">    </span><br><span class="line">    x = x &lt; <span class="number">0</span> ? -x : x;</span><br><span class="line">    y = y &lt; <span class="number">0</span> ? -y : y;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (x &gt;= y) &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">cnt</span> <span class="operator">=</span> <span class="number">1</span>, base = y;</span><br><span class="line">        <span class="keyword">while</span> (x &gt; (base &lt;&lt; <span class="number">1</span>)) &#123;</span><br><span class="line">            cnt &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">            base &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += cnt;</span><br><span class="line">        x -= base;</span><br><span class="line">    &#125;</span><br><span class="line">    ans = (((a ^ b) &amp; signBit) == <span class="number">0</span>) ? ans : -ans;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">int</span>)ans;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
 
-<h4 id="Afterthought-1"><a href="#Afterthought-1" class="headerlink" title="Afterthought"></a>Afterthought</h4><p>time complexity: O( logn) 难以具体地给出；space complexity: O(1)；</p>
+<h4 id="Afterthought-1"><a href="#Afterthought-1" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>time complexity:</strong> O( logn) 难以具体地给出；<strong>space complexity:</strong> O(1)；</p>
 <p>针对 int 越界的问题，用了 long，一些情况下可能会限制使用 long。</p>
 <p><strong>跑很快。</strong></p>
 <p>特点是移位运算，里面的一层循环要理清，算是难点。</p>
@@ -294,13 +295,27 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-06-01</p></div> 
-    <div class="post-entry__tags"><a href="/tags/Bitwise/" class="post-tags__link button"># Bitwise</a><a href="/tags/Simulation/" class="post-tags__link button"># Simulation</a></div> 
+    <div class="post-footer__meta"><p>updated at 2022-06-07</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Bitwise/" class="post-tags__link button"># Bitwise</a><a href="/tags/Simulation/" class="post-tags__link button"># Simulation</a><a href="/tags/Bitwise-Bit-Shifting/" class="post-tags__link button"># Bitwise_Bit Shifting</a></div> 
 </article>
 
 
     <div class="nav">
         <div class="nav__prev">
+            
+                <a href="/2022/06/06/jzii002/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 002. 二进制加法
+                        </div>
+                    </div>
+                </a>
             
         </div>
         <div class="nav__next">
