@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>剑指 Offer II 005. 单词长度的最大乘积 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="Bitwise, Bitwise_Bit Shifting, Matrix">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Introduce题干给定一个字符串数组 words，请计算当两个字符串 words[i] 和 words[j] 不包含相同字符时，它们长度的乘积的最大值。假设字符串中只包含英语的小写字母。如果没有不包含相同字符的一对字符串，返回 0。  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;aseY1I&#x2F;      例子： 输入: words &#x3D; [&quot;abcw&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指 Offer II 005. 单词长度的最大乘积">
+<meta property="og:url" content="https://linkjaja.github.io/2022/06/09/jzii005/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="Introduce题干给定一个字符串数组 words，请计算当两个字符串 words[i] 和 words[j] 不包含相同字符时，它们长度的乘积的最大值。假设字符串中只包含英语的小写字母。如果没有不包含相同字符的一对字符串，返回 0。  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;aseY1I&#x2F;      例子： 输入: words &#x3D; [&quot;abcw&amp;qu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/06/09/LVZ3tp7QcIoGO6P.png">
+<meta property="article:published_time" content="2022-06-09T10:13:26.000Z">
+<meta property="article:modified_time" content="2022-06-09T11:06:35.024Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="Bitwise">
+<meta property="article:tag" content="Bitwise_Bit Shifting">
+<meta property="article:tag" content="Matrix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/09/LVZ3tp7QcIoGO6P.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/tags/" class="navbar-menu button">tags</a>
+                
+                    <a href="/categories/" class="navbar-menu button">categories</a>
+                
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        剑指 Offer II 005. 单词长度的最大乘积
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/06/" class="post-meta__date button">2022-06-09</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-brute-force%EF%BC%8Cmatrix"><span class="toc-text">Solution 1 (brute force，matrix)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-bitwise"><span class="toc-text">Solution 2 (bitwise)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-brute-force%EF%BC%8Cmatrix"><span class="toc-text">Solution 1 (brute force，matrix)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Work-amp-Thought"><span class="toc-text">Work &amp; Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-bitwise"><span class="toc-text">Solution 2 (bitwise)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            This article was last updated on &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; days ago, the information described in the article may be outdated.
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-06-09"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给定一个字符串数组 words，请计算当两个字符串 words[i] 和 words[j] 不包含相同字符时，它们长度的乘积的最大值。假设字符串中只包含英语的小写字母。如果没有不包含相同字符的一对字符串，返回 0。</p>
+<blockquote>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/aseY1I/">https://leetcode-cn.com/problems/aseY1I/</a></p>
+</blockquote>
+</div></blockquote>
+
+
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">输入: words = [&quot;abcw&quot;,&quot;baz&quot;,&quot;foo&quot;,&quot;bar&quot;,&quot;fxyz&quot;,&quot;abcdef&quot;]</span><br><span class="line">输出: 16 </span><br><span class="line">解释: 这两个单词为 &quot;abcw&quot;, &quot;fxyz&quot;。它们不包含相同字符，且长度的乘积最大。</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-note blockquote-note__caution"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></div>注意</div><div class="blockquote-note__content"><ul>
+<li><code>2 &lt;= words.length &lt;= 1000</code></li>
+<li><code>1 &lt;= words[i].length &lt;= 1000</code></li>
+<li><code>words[i]</code> 仅包含小写字母</li>
+</ul>
+</div></blockquote>
+
+
+
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-brute-force，matrix"><a href="#Solution-1-brute-force，matrix" class="headerlink" title="Solution 1 (brute force，matrix)"></a>Solution 1 (brute force，matrix)</h3><p>题目要求两个不重复的单词长度乘积最大，并返回该乘积。根据题意，单词 words[i] 仅包含小写字母，我们可以创造一个 <code>matrix[words.length][26]</code> 来记录，之后读表选取无相同字母的，并对其求积。</p>
+<h4 id="Work-amp-Thought"><a href="#Work-amp-Thought" class="headerlink" title="Work &amp; Thought"></a><strong>Work &amp; Thought</strong></h4><p>（如下图）</p>
+<p><img src="https://s2.loli.net/2022/06/09/LVZ3tp7QcIoGO6P.png" alt="1643789066.png"></p>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProduct</span><span class="params">(String[] words)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span>[][] matrix = <span class="keyword">new</span> <span class="title class_">boolean</span>[words.length][<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; words.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">char</span> cur : words[i].toCharArray())&#123;</span><br><span class="line">                matrix[i][cur - <span class="string">&#x27;a&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; words.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; words.length; j++)&#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(; k &lt; <span class="number">26</span>; k++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(matrix[i][k] &amp;&amp; matrix[j][k]) <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(k == <span class="number">26</span>)&#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">prod</span> <span class="operator">=</span> words[i].length() * words[j].length();</span><br><span class="line">                    result = Math.max(result, prod);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>易错点:</strong></p>
+<ul>
+<li>把字符串转变为一个新的 char 数组，toCharArray()</li>
+<li>for 循环可以缺少初始化语句、循环条件和每次循环更新语句<ul>
+<li>例如： <code>for(; k &lt; 26; k++)&#123;</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>time complexity:</strong> O(m * n<sup>2</sup>)，假设 m 为每个单词的平均长度，n 为 words 包含的单词数量；</p>
+<p><strong>space complexity:</strong> O(n)；</p>
+<h3 id="Solution-2-bitwise"><a href="#Solution-2-bitwise" class="headerlink" title="Solution 2 (bitwise)"></a>Solution 2 (bitwise)</h3><p>Solution 1 是把单词数组中的每个单词变成一个 entry，单个单词中的字母出现与否也占用一个维度，空间上可以再进行压缩。</p>
+<p><strong>Work &amp; Thought</strong></p>
+<p>如果将 26 个英文单词和 32 位的 int 联系起来，让单个单词中的字母占用一个 bit 位，0&#x2F;1 表示出现与否，就可以降维成一维 int 数组。</p>
+<h4 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProduct</span><span class="params">(String[] words)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] mask = <span class="keyword">new</span> <span class="title class_">int</span>[words.length];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; words.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">char</span> ch : words[i].toCharArray())&#123;</span><br><span class="line">                mask[i] |= <span class="number">1</span> &lt;&lt; (ch - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; words.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; words.length; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>((mask[i] &amp; mask[j]) == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">prod</span> <span class="operator">=</span> words[i].length() * words[j].length();</span><br><span class="line">                    result = Math.max(prod, result);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought-1"><a href="#Afterthought-1" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>易错点:</strong></p>
+<ul>
+<li>binary 中放 1 用<code>|</code>，因为 OR 任意为 1 是 1，举例 <code>mask[i] |= 1 &lt;&lt; 2</code>，如果 mask[i] 原本是 001，就变为 101；</li>
+<li>运算符优先级，<code>==</code> 优先于 <code>&amp;</code>，所以 <code>(mask[i] &amp; mask[j]) == 0</code> 的括号是必要的；</li>
+</ul>
+<p><strong>time complexity:</strong>  O(mn + n<sup>2</sup>)，假设 m 为每个单词的平均长度，n 为 words 包含的单词数量；</p>
+<p><strong>space complexity:</strong> O(n)；</p>
+<blockquote>
+<p>本方法与方法 1 思路差不多，就是需要熟悉位运算的一些操作。</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>文章图片来源 - hualuoyueque 链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/aseY1I/solution/hua-luo-yue-que-bei-li-yong-che-di-de-er-loai/">https://leetcode.cn/problems/aseY1I/solution/hua-luo-yue-que-bei-li-yong-che-di-de-er-loai/</a></li>
+</ul>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2022/06/09/jzii005/">https://linkjaja.github.io/2022/06/09/jzii005/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-06-09</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Bitwise/" class="post-tags__link button"># Bitwise</a><a href="/tags/Bitwise-Bit-Shifting/" class="post-tags__link button"># Bitwise_Bit Shifting</a><a href="/tags/Matrix/" class="post-tags__link button"># Matrix</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/06/09/jzii006/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 006. 排序数组中两个数字之和
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/06/07/jzii004/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 004. 只出现一次的数字
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
+</html>
