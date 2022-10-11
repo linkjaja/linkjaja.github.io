@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>剑指II-013. 二维子矩阵的和 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="Matrix, Prefix Sum">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Introduce题干给定一个二维矩阵 matrix，以下类型的多个请求：  计算其子矩形范围内元素的总和，该子矩阵的左上角为 (row1, col1) ，右下角为 (row2, col2) 。  实现 NumMatrix 类：  NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化 int sumRegion(int row1, int col1, int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指II-013. 二维子矩阵的和">
+<meta property="og:url" content="https://linkjaja.github.io/2022/10/11/jzii013/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="Introduce题干给定一个二维矩阵 matrix，以下类型的多个请求：  计算其子矩形范围内元素的总和，该子矩阵的左上角为 (row1, col1) ，右下角为 (row2, col2) 。  实现 NumMatrix 类：  NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化 int sumRegion(int row1, int col1, int">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.328888.xyz/2022/10/11/8NoCJ.jpg">
+<meta property="og:image" content="https://s1.328888.xyz/2022/10/11/8NcNE.jpg">
+<meta property="article:published_time" content="2022-10-11T14:24:05.000Z">
+<meta property="article:modified_time" content="2022-10-11T14:34:55.616Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="Matrix">
+<meta property="article:tag" content="Prefix Sum">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s1.328888.xyz/2022/10/11/8NoCJ.jpg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/tags/" class="navbar-menu button">tags</a>
+                
+                    <a href="/categories/" class="navbar-menu button">categories</a>
+                
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        剑指II-013. 二维子矩阵的和
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-11</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-matrix-prefix-sum"><span class="toc-text">Solution 1 (matrix prefix sum)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-matrix-prefix-sum"><span class="toc-text">Solution 1 (matrix prefix sum)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            This article was last updated on &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; days ago, the information described in the article may be outdated.
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-10-11"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给定一个二维矩阵 <code>matrix</code>，以下类型的多个请求：</p>
+<ul>
+<li>计算其子矩形范围内元素的总和，该子矩阵的左上角为 <code>(row1, col1)</code> ，右下角为 <code>(row2, col2)</code> 。</li>
+</ul>
+<p>实现 <code>NumMatrix</code> 类：</p>
+<ul>
+<li><code>NumMatrix(int[][] matrix)</code> 给定整数矩阵 <code>matrix</code> 进行初始化</li>
+<li><code>int sumRegion(int row1, int col1, int row2, int col2)</code> 返回左上角 <code>(row1, col1)</code> 、右下角 <code>(row2, col2)</code> 的子矩阵的元素总和。</li>
+</ul>
+<blockquote>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/O4NDxx/">https://leetcode-cn.com/problems/O4NDxx/</a></p>
+</blockquote>
+</div></blockquote>
+
+
+
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-matrix-prefix-sum"><a href="#Solution-1-matrix-prefix-sum" class="headerlink" title="Solution 1 (matrix prefix sum)"></a>Solution 1 (matrix prefix sum)</h3><h4 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a><strong>Thought</strong></h4><p><strong>题目要我们先初始化 matrix，之后写一个方法来实现计算区域面积内的元素和。</strong></p>
+<blockquote>
+<p>实现的时候要注意：</p>
+<ol>
+<li>prefix sum 的偏移；</li>
+<li>如何求区域内的元素和；</li>
+</ol>
+</blockquote>
+<p><strong>prefix sum 会有偏移</strong>，以普通的一维数组为例，preSum[1] 包含 nums[0]，preSum[0] 不含 nums 中的任意元素，也就是说 preSum 的 index 与 nums 的 index 有偏移。</p>
+<p><strong>求区域内的元素和</strong>，可以先从基本的某一点的 prefix sum 开始理解，示意图如下：</p>
+<div align="center"> <img src="https://s1.328888.xyz/2022/10/11/8NoCJ.jpg"/> </div>
+
+<p>之后推广到给区域的左上角和右下角，求该区域元素和，示意图如下：</p>
+<div align="center"> <img src="https://s1.328888.xyz/2022/10/11/8NcNE.jpg"/> </div>
+
+
+
+<blockquote>
+<p>上图框起来的，不懂就参考：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/range-sum-query-2d-immutable/solution/ru-he-qiu-er-wei-de-qian-zhui-he-yi-ji-y-6c21/">如何求二维的前缀和，以及用前缀和求子矩形的面积</a></p>
+</blockquote>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumMatrix</span> &#123;</span><br><span class="line">    <span class="type">int</span>[][] preSum;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">NumMatrix</span><span class="params">(<span class="type">int</span>[][] matrix)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line">        preSum = <span class="keyword">new</span> <span class="title class_">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="comment">// i - row of matrix, j - column of matrix;</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">                preSum[i][j] = preSum[i - <span class="number">1</span>][j] + preSum[i][j - <span class="number">1</span>] - preSum[i - <span class="number">1</span>][j - <span class="number">1</span>] + matrix[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">sumRegion</span><span class="params">(<span class="type">int</span> row1, <span class="type">int</span> col1, <span class="type">int</span> row2, <span class="type">int</span> col2)</span> &#123;</span><br><span class="line">        row1++; col1++; row2++; col2++;</span><br><span class="line">        <span class="keyword">return</span> preSum[row2][col2] - preSum[row1 - <span class="number">1</span>][col2] - preSum[row2][col1 - <span class="number">1</span>] + preSum[row1 - <span class="number">1</span>][col1 - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>time complexity:</strong> O(n * m)</p>
+<p><strong>space complexity:</strong> O(n * m)</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2022/10/11/jzii013/">https://linkjaja.github.io/2022/10/11/jzii013/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-10-11</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Matrix/" class="post-tags__link button"># Matrix</a><a href="/tags/Prefix-Sum/" class="post-tags__link button"># Prefix Sum</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/10/11/jzii014/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            剑指II-014. 字符串中的变位词
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/10/11/jzii012/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            剑指II-012. 左右两边子数组的和相等
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
+</html>
