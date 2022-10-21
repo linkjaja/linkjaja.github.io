@@ -42,15 +42,15 @@
 <meta property="og:site_name" content="Latehour Beer">
 <meta property="og:description" content="Introduce题干给定一个二维矩阵 matrix，以下类型的多个请求：  计算其子矩形范围内元素的总和，该子矩阵的左上角为 (row1, col1) ，右下角为 (row2, col2) 。  实现 NumMatrix 类：  NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化 int sumRegion(int row1, int col1, int">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s1.328888.xyz/2022/10/11/8NoCJ.jpg">
-<meta property="og:image" content="https://s1.328888.xyz/2022/10/11/8NcNE.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/GmQOjRr5SLIep1x.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/8ESUBhnXzjb7IwM.jpg">
 <meta property="article:published_time" content="2022-10-11T14:24:05.000Z">
-<meta property="article:modified_time" content="2022-10-11T14:34:55.616Z">
+<meta property="article:modified_time" content="2022-10-21T02:19:23.214Z">
 <meta property="article:author" content="Link">
 <meta property="article:tag" content="Matrix">
 <meta property="article:tag" content="Prefix Sum">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s1.328888.xyz/2022/10/11/8NoCJ.jpg">
+<meta name="twitter:image" content="https://s2.loli.net/2022/10/21/GmQOjRr5SLIep1x.jpg">
 
 
     
@@ -170,7 +170,7 @@
     </div>
     <script>
         (() => {
-            var update = Date.parse("2022-10-11"),
+            var update = Date.parse("2022-10-21"),
                 date = new Date(),
                 now = date.getTime(),
                 expire = now - update,
@@ -209,11 +209,10 @@
 </blockquote>
 <p><strong>prefix sum 会有偏移</strong>，以普通的一维数组为例，preSum[1] 包含 nums[0]，preSum[0] 不含 nums 中的任意元素，也就是说 preSum 的 index 与 nums 的 index 有偏移。</p>
 <p><strong>求区域内的元素和</strong>，可以先从基本的某一点的 prefix sum 开始理解，示意图如下：</p>
-<div align="center"> <img src="https://s1.328888.xyz/2022/10/11/8NoCJ.jpg"/> </div>
+<div align="center"> <img src="https://s2.loli.net/2022/10/21/GmQOjRr5SLIep1x.jpg"/> </div>
 
 <p>之后推广到给区域的左上角和右下角，求该区域元素和，示意图如下：</p>
-<div align="center"> <img src="https://s1.328888.xyz/2022/10/11/8NcNE.jpg"/> </div>
-
+<div align="center"> <img src="https://s2.loli.net/2022/10/21/8ESUBhnXzjb7IwM.jpg"/> </div>
 
 
 <blockquote>
@@ -244,7 +243,7 @@
         
     </div>
  
-    <div class="post-footer__meta"><p>updated at 2022-10-11</p></div> 
+    <div class="post-footer__meta"><p>updated at 2022-10-21</p></div> 
     <div class="post-entry__tags"><a href="/tags/Matrix/" class="post-tags__link button"># Matrix</a><a href="/tags/Prefix-Sum/" class="post-tags__link button"># Prefix Sum</a></div> 
 </article>
 
