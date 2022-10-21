@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>剑指II-017. 含有所有字符的最短字符串 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="HashTable, Sliding window">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Introduce题干给定两个字符串 s 和 t 。返回 s 中包含 t 的所有字符的最短子字符串。如果 s 中不存在符合条件的子字符串，则返回空字符串 “” 。 如果 s 中存在多个符合条件的子字符串，返回任意一个。hard  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;M1oyTv&#x2F;      SolutionsSolution 1 (sliding window">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指II-017. 含有所有字符的最短字符串">
+<meta property="og:url" content="https://linkjaja.github.io/2022/10/21/jzii017/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="Introduce题干给定两个字符串 s 和 t 。返回 s 中包含 t 的所有字符的最短子字符串。如果 s 中不存在符合条件的子字符串，则返回空字符串 “” 。 如果 s 中存在多个符合条件的子字符串，返回任意一个。hard  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;M1oyTv&#x2F;      SolutionsSolution 1 (sliding window">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/6whKFcrYeHxvWgE.jpg">
+<meta property="article:published_time" content="2022-10-21T06:17:34.000Z">
+<meta property="article:modified_time" content="2022-10-21T06:31:13.792Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="HashTable">
+<meta property="article:tag" content="Sliding window">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/10/21/6whKFcrYeHxvWgE.jpg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/tags/" class="navbar-menu button">tags</a>
+                
+                    <a href="/categories/" class="navbar-menu button">categories</a>
+                
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        剑指II-017. 含有所有字符的最短字符串
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-21</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-sliding-window-hashtable"><span class="toc-text">Solution 1 (sliding window + hashtable)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-sliding-window-hashtable"><span class="toc-text">Solution 1 (sliding window + hashtable)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            This article was last updated on &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; days ago, the information described in the article may be outdated.
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-10-21"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给定两个字符串 s 和 t 。返回 s 中包含 t 的所有字符的最短子字符串。如果 s 中不存在符合条件的子字符串，则返回空字符串 “” 。</p>
+<p>如果 s 中存在多个符合条件的子字符串，返回任意一个。<br><code>hard</code></p>
+<blockquote>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/M1oyTv/">https://leetcode-cn.com/problems/M1oyTv/</a></p>
+</blockquote>
+</div></blockquote>
+
+
+
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-sliding-window-hashtable"><a href="#Solution-1-sliding-window-hashtable" class="headerlink" title="Solution 1 (sliding window + hashtable)"></a>Solution 1 (sliding window + hashtable)</h3><h4 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a><strong>Thought</strong></h4><p>s 中包含 <strong>t 的所有字符</strong>的<strong>最短</strong>子字符串，<strong>返回子字符串</strong>。</p>
+<p><em>s，t 均由英文字母组成。</em></p>
+<p>基本思路是：记下 t 的所有字符，以此为根据，在 s 上进行 sliding window 操作。</p>
+<blockquote>
+<p>实现时要注意：</p>
+<ol>
+<li>记下 t 的所有字符；</li>
+<li>具体如何 sliding window，也就是 left 何时走，right 何时走；</li>
+<li>符合条件的 window 如何选最短；</li>
+</ol>
+</blockquote>
+<p>使用 hashtable 来记录<strong>记录字符</strong>，每个种类的出现次数。</p>
+<p>具体<strong>如何 sliding window</strong>，示意图如下。</p>
+<p>如果一个 window 中刚好把 t 中的所有字符都找到了，那么，这就是<strong>符合条件的 window</strong>。</p>
+<ul>
+<li>我们通过在 s 中每找到一个吻合的字符，计数器 count 就 +1，之后看计数器是不是等于 t 的长度。</li>
+<li>但是如果不是在 s 的最后找全，因为计数器一旦到这个数就不变了，之后的都会被认为是符合的，举例 s 为 <code>abb</code>，t 为 <code>a</code>，那么因为找得到 a，count 变为 1，之后的 b 因为在 t 中找不到，所以计数器不变，就还是 1，这时即使子串长度变长了，还是可以通过计数器的判断。所以，我们不能仅仅通过这点来得到结果，<strong>应该在每一次通过计数器判断后，记录当前长度，在此基础上选更短的。</strong></li>
+</ul>
+<div align="center"> <img src="https://s2.loli.net/2022/10/21/6whKFcrYeHxvWgE.jpg"/> </div>
+
+<hr>
+<blockquote>
+<p>不可以在循环开始<code>char curR = s.charAt(r)</code>，之后就用 <code>curR</code>, <code>curL</code>代替 <code>s.charAt(r)</code>, <code>s.charAt(r)</code>，因为循环内只是保持 right 的不动，left 是可能会移动的，如果一开始就把 <code>curL</code> 固定下来了，那么就可能失真。</p>
+</blockquote>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">minWindow</span><span class="params">(String s, String t)</span> &#123;</span><br><span class="line">        <span class="comment">// cornor case</span></span><br><span class="line">        <span class="keyword">if</span>(t.length() &gt; s.length()) <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        HashMap&lt;Character, Integer&gt; mapT = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        HashMap&lt;Character, Integer&gt; mapS = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; t.length(); i++)&#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">cur</span> <span class="operator">=</span> t.charAt(i);</span><br><span class="line">            mapT.put(cur, mapT.getOrDefault(cur, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        <span class="type">String</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>, r = <span class="number">0</span>; r &lt; s.length(); r++)&#123;</span><br><span class="line">            <span class="comment">// char curR = s.charAt(r);</span></span><br><span class="line">            <span class="comment">// char curL = s.charAt(l);</span></span><br><span class="line">            mapS.put(s.charAt(r), mapS.getOrDefault(s.charAt(r), <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(mapT.containsKey(s.charAt(r)) &amp;&amp; mapS.get(s.charAt(r)) &lt;= mapT.get(s.charAt(r))) count++;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; r &amp;&amp; (!mapT.containsKey(s.charAt(l)) || mapS.get(s.charAt(l)) &gt; mapT.get(s.charAt(l))))&#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">cnt</span> <span class="operator">=</span> mapS.get(s.charAt(l)) - <span class="number">1</span>;</span><br><span class="line">                mapS.put(s.charAt(l), cnt);</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(count == t.length() &amp;&amp; r - l + <span class="number">1</span> &lt; len)&#123;</span><br><span class="line">                len = r - l + <span class="number">1</span>;</span><br><span class="line">                ans = s.substring(l, r + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>time complexity:</strong> O(n)</p>
+<p><strong>space complexity:</strong> O(n)</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2022/10/21/jzii017/">https://linkjaja.github.io/2022/10/21/jzii017/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-10-21</p></div> 
+    <div class="post-entry__tags"><a href="/tags/HashTable/" class="post-tags__link button"># HashTable</a><a href="/tags/Sliding-window/" class="post-tags__link button"># Sliding window</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/10/21/jzii018/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            剑指II-018. 有效的回文
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/10/21/jzii016/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            剑指II-016. 不含重复字符的最长子字符串
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
+</html>

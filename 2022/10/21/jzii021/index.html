@@ -25,30 +25,31 @@
     <!-- meta -->
 
 
-<title>剑指II-015. 字符串中的所有变位词 | Latehour Beer</title>
+<title>剑指 Offer II 021. 删除链表的倒数第 n 个结点 | Latehour Beer</title>
 
 
-    <meta name="keywords" content="Sliding window">
+    <meta name="keywords" content="Two Pointers">
 
 
 
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Introduce题干给定两个字符串 s 和 p，找到 s 中所有 p 的 变位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。 变位词 指字母相同，但排列不同的字符串。  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;VabMRr&#x2F;      SolutionsSolution 1 (sliding window)Thought我们找到 p 的某一种排列在">
+    <meta name="description" content="Introduce题干给定一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。medium  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;SLwz0R&#x2F;      SolutionsSolution 1 (快慢双指针)Thought题目让我们删除链表的倒数第 n 个节点。 题中不是双向链表，所以不能通过从最后一个节点往回走来定位目标节点，但我们可以通过：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指II-015. 字符串中的所有变位词">
-<meta property="og:url" content="https://linkjaja.github.io/2022/10/11/jzii015/index.html">
+<meta property="og:title" content="剑指 Offer II 021. 删除链表的倒数第 n 个结点">
+<meta property="og:url" content="https://linkjaja.github.io/2022/10/21/jzii021/index.html">
 <meta property="og:site_name" content="Latehour Beer">
-<meta property="og:description" content="Introduce题干给定两个字符串 s 和 p，找到 s 中所有 p 的 变位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。 变位词 指字母相同，但排列不同的字符串。  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;VabMRr&#x2F;      SolutionsSolution 1 (sliding window)Thought我们找到 p 的某一种排列在">
+<meta property="og:description" content="Introduce题干给定一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。medium  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;SLwz0R&#x2F;      SolutionsSolution 1 (快慢双指针)Thought题目让我们删除链表的倒数第 n 个节点。 题中不是双向链表，所以不能通过从最后一个节点往回走来定位目标节点，但我们可以通过：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s2.loli.net/2022/10/21/FEgbspoj8LfXzOy.jpg">
-<meta property="article:published_time" content="2022-10-11T14:40:43.000Z">
-<meta property="article:modified_time" content="2022-10-21T02:20:01.782Z">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/UjgAk7dLWq2phsK.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/GPdk3n7Dg2pFycB.jpg">
+<meta property="article:published_time" content="2022-10-21T06:36:06.000Z">
+<meta property="article:modified_time" content="2022-10-21T07:36:49.723Z">
 <meta property="article:author" content="Link">
-<meta property="article:tag" content="Sliding window">
+<meta property="article:tag" content="Two Pointers">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s2.loli.net/2022/10/21/FEgbspoj8LfXzOy.jpg">
+<meta name="twitter:image" content="https://s2.loli.net/2022/10/21/UjgAk7dLWq2phsK.jpg">
 
 
     
@@ -123,10 +124,10 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        剑指II-015. 字符串中的所有变位词
+        剑指 Offer II 021. 删除链表的倒数第 n 个结点
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-11</a>
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-21</a>
         
     <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
 
@@ -145,7 +146,7 @@
 
     <aside class="post-side">
         <div class="post-side__toc">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-sliding-window"><span class="toc-text">Solution 1 (sliding window)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-%E5%BF%AB%E6%85%A2%E5%8F%8C%E6%8C%87%E9%92%88"><span class="toc-text">Solution 1 (快慢双指针)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
         </div>
     </aside>
     <a class="btn-toc button" id="btn-toc" tabindex="0">
@@ -155,7 +156,7 @@
     </a>
     <div class="toc-menus" id="toc-menus">
         <div class="toc-title">Article Directory</div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-sliding-window"><span class="toc-text">Solution 1 (sliding window)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-%E5%BF%AB%E6%85%A2%E5%8F%8C%E6%8C%87%E9%92%88"><span class="toc-text">Solution 1 (快慢双指针)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
     </div>
 
 
@@ -181,30 +182,33 @@
     </script>
 </div>
     <div class="post__content">
-        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给定两个字符串 <code>s</code> 和 <code>p</code>，找到 <code>s</code> 中所有 <code>p</code> 的 <strong>变位词</strong> 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。</p>
-<p><strong>变位词</strong> 指字母相同，但排列不同的字符串。</p>
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给定一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。<br><code>medium</code></p>
 <blockquote>
-<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/VabMRr/">https://leetcode-cn.com/problems/VabMRr/</a></p>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/SLwz0R/">https://leetcode-cn.com/problems/SLwz0R/</a></p>
 </blockquote>
 </div></blockquote>
 
 
 
-<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-sliding-window"><a href="#Solution-1-sliding-window" class="headerlink" title="Solution 1 (sliding window)"></a>Solution 1 (sliding window)</h3><h4 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a><strong>Thought</strong></h4><p><strong>我们找到 p 的某一种排列在 s 中的位置。</strong></p>
-<p>套用 剑指II_014 的思路（下图），不过这次要记录符合要求的 window 的起点。</p>
-<div align="center"> <img src="https://s2.loli.net/2022/10/21/FEgbspoj8LfXzOy.jpg"/> </div>
-
-
-
-<blockquote>
-<p>⚠️注意:</p>
-<p>本题要求子串的起始下标，所以第一个或者最后一个需要在循环外面讨论：</p>
-<ul>
-<li>可以在第一把位放好之后就讨论；</li>
-<li>也可以在跑到最后一把的时候，出循环来讨论；</li>
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-快慢双指针"><a href="#Solution-1-快慢双指针" class="headerlink" title="Solution 1 (快慢双指针)"></a>Solution 1 (快慢双指针)</h3><h4 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a><strong>Thought</strong></h4><p><strong>题目让我们删除链表的倒数第 n 个节点。</strong></p>
+<p>题中不是双向链表，所以不能通过从最后一个节点往回走来定位目标节点，但我们可以通过：</p>
+<ol>
+<li>以 O(n) 的时间复杂度代价，走一遍给定的链表来得到链表长度，从而定位目标节点；<ul>
+<li>题目说只用一趟扫描实现，那就换个思路。</li>
 </ul>
+</li>
+<li>前后双指针，因为链表是定长的，那么让 p1 先走 n 步，之后 p1, p2 一起走，p1 撞墙时，p2 就是倒数第 n（下图示意）。</li>
+</ol>
+<div align="center" > <img src="https://s2.loli.net/2022/10/21/UjgAk7dLWq2phsK.jpg" width="80%" > </div>
+
+<hr>
+<blockquote>
+<p><strong>具体如图示</strong></p>
 </blockquote>
-<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">findAnagrams</span><span class="params">(String s, String p)</span> &#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// cornor case</span></span><br><span class="line">        <span class="keyword">if</span>(p.length() &gt; s.length()) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] numsA = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="type">int</span>[] numsB = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; p.length(); i++)&#123;</span><br><span class="line">            numsA[p.charAt(i) - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            numsB[s.charAt(i) - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(Arrays.equals(numsA, numsB)) res.add(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> p.length(); i &lt; s.length(); i++)&#123;</span><br><span class="line">            numsB[s.charAt(i - p.length()) - <span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">            numsB[s.charAt(i) - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            <span class="keyword">if</span>(Arrays.equals(numsA, numsB)) res.add(i - p.length() + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div align="center" > <img src="https://s2.loli.net/2022/10/21/GPdk3n7Dg2pFycB.jpg" width="80%" > </div>
+
+
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">removeNthFromEnd</span><span class="params">(ListNode head, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// p1: fast</span></span><br><span class="line">        <span class="comment">// p2: slow</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">fast</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">slow</span> <span class="operator">=</span> dummy;</span><br><span class="line">        <span class="keyword">while</span>(n &gt; <span class="number">0</span> &amp;&amp; fast.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            n--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(fast.next != <span class="literal">null</span>)&#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">        &#125;</span><br><span class="line">        slow.next = slow.next.next;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>time complexity:</strong> O(n)</p>
 <p><strong>space complexity:</strong> O(1)</p>
@@ -219,7 +223,7 @@
             <strong>
                 Permalink: 
             </strong>
-            <a href="https://linkjaja.github.io/2022/10/11/jzii015/">https://linkjaja.github.io/2022/10/11/jzii015/</a>
+            <a href="https://linkjaja.github.io/2022/10/21/jzii021/">https://linkjaja.github.io/2022/10/21/jzii021/</a>
         </p>
         
             <strong>
@@ -230,14 +234,14 @@
     </div>
  
     <div class="post-footer__meta"><p>updated at 2022-10-21</p></div> 
-    <div class="post-entry__tags"><a href="/tags/Sliding-window/" class="post-tags__link button"># Sliding window</a></div> 
+    <div class="post-entry__tags"><a href="/tags/Two-Pointers/" class="post-tags__link button"># Two Pointers</a></div> 
 </article>
 
 
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/2022/10/21/jzii016/" class="nav__link">
+                <a href="/2022/10/21/jzii022/" class="nav__link">
                     <div>
                         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
                     </div>
@@ -246,7 +250,7 @@
                             Previous Post
                         </div>
                         <div class="nav__title">
-                            剑指II-016. 不含重复字符的最长子字符串
+                            剑指 Offer II 022. 链表中环的入口节点
                         </div>
                     </div>
                 </a>
@@ -254,13 +258,13 @@
         </div>
         <div class="nav__next">
             
-                <a href="/2022/10/11/jzii014/" class="nav__link">
+                <a href="/2022/10/21/jzii020/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             Next Post
                         </div>
                         <div class="nav__title">
-                            剑指II-014. 字符串中的变位词
+                            剑指 II-020. 回文子字符串的个数
                         </div>
                     </div>
                     <div>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>剑指 Offer II 025. 链表中的两数相加 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="Stack, head first 头插法">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Introduce题干给定两个 非空链表 l1和 l2 来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。 可以假设除了数字 0 之外，这两个数字都不会以零开头。medium  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;lMSNwu&#x2F;      SolutionsSolution 1 (stack，头插法)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指 Offer II 025. 链表中的两数相加">
+<meta property="og:url" content="https://linkjaja.github.io/2022/10/21/jzii025/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="Introduce题干给定两个 非空链表 l1和 l2 来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。 可以假设除了数字 0 之外，这两个数字都不会以零开头。medium  src：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;lMSNwu&#x2F;      SolutionsSolution 1 (stack，头插法)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/ySo1JpOP3LBaUnI.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/3ZFlgeRpr92BWjf.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/10/21/ZDlR5wrveVGnmkq.jpg">
+<meta property="article:published_time" content="2022-10-21T06:36:17.000Z">
+<meta property="article:modified_time" content="2022-10-21T08:49:03.443Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="Stack">
+<meta property="article:tag" content="head first 头插法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/10/21/ySo1JpOP3LBaUnI.jpg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/tags/" class="navbar-menu button">tags</a>
+                
+                    <a href="/categories/" class="navbar-menu button">categories</a>
+                
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        剑指 Offer II 025. 链表中的两数相加
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-21</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-stack%EF%BC%8C%E5%A4%B4%E6%8F%92%E6%B3%95"><span class="toc-text">Solution 1 (stack，头插法)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-stack%EF%BC%8C%E5%A4%B4%E6%8F%92%E6%B3%95"><span class="toc-text">Solution 1 (stack，头插法)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            This article was last updated on &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; days ago, the information described in the article may be outdated.
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-10-21"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>给定两个 非空链表 l1和 l2 来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。</p>
+<p>可以假设除了数字 0 之外，这两个数字都不会以零开头。<br><code>medium</code></p>
+<blockquote>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lMSNwu/">https://leetcode-cn.com/problems/lMSNwu/</a></p>
+</blockquote>
+</div></blockquote>
+
+
+
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-stack，头插法"><a href="#Solution-1-stack，头插法" class="headerlink" title="Solution 1 (stack，头插法)"></a>Solution 1 (stack，头插法)</h3><h4 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a><strong>Thought</strong></h4><p><strong>链表中的元素相加，高位在链表开始位置，加完返回一个新链表。</strong></p>
+<p>主要难点：加法需要从最低位对齐，而链表的特性只能左侧对齐（下图）。我们可以通过两种方式来解：</p>
+<ol>
+<li>翻转链表，之后就可以从头开始加；</li>
+<li>利用栈先进后出的特性，让链表元素一一进栈，走完为止，之后同步出栈，做加法（下图）；</li>
+</ol>
+<p>当然，加完之后的元素也要低位在链表尾部，也就是新算出来的数去指向上一个算出来的数，像栈一样往里挤。这种插入新节点的方法就是<strong>头插法</strong>（下图）。</p>
+<blockquote>
+<p>链表加法：</p>
+</blockquote>
+<div align="center" > <img src="https://s2.loli.net/2022/10/21/ySo1JpOP3LBaUnI.jpg" width="50%"> </div>
+
+<blockquote>
+<p>辅助栈：</p>
+</blockquote>
+<div align="center" > <img src="https://s2.loli.net/2022/10/21/3ZFlgeRpr92BWjf.jpg" width="40%"> </div>
+
+<blockquote>
+<p>头插法：</p>
+</blockquote>
+<div align="center" > <img src="https://s2.loli.net/2022/10/21/ZDlR5wrveVGnmkq.jpg" width="50%"> </div>
+
+<hr>
+<blockquote>
+<p>计算过程中可能要进位。</p>
+<p>我们维护一个进位变量 <code>carry</code>，计算中有两种情况：</p>
+<ol>
+<li>没算完：在计算下一位的时候加上 <code>carry</code>；</li>
+<li>算完了：若此时 <code>carry</code> 不等于 0，那么这个 <code>carry</code> 就要当最高位；</li>
+</ol>
+</blockquote>
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> &#123;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pA</span> <span class="operator">=</span> l1;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">pB</span> <span class="operator">=</span> l2;</span><br><span class="line">        Stack&lt;Integer&gt; stackA = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        Stack&lt;Integer&gt; stackB = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span>(pA != <span class="literal">null</span>)&#123;</span><br><span class="line">            stackA.push(pA.val);</span><br><span class="line">            pA = pA.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(pB != <span class="literal">null</span>)&#123;</span><br><span class="line">            stackB.push(pB.val);</span><br><span class="line">            pB = pB.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">carry</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">nodeC</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(!stackA.isEmpty() || !stackB.isEmpty() || carry &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> carry;</span><br><span class="line">            sum += stackA.isEmpty() ? <span class="number">0</span> : stackA.pop();</span><br><span class="line">            sum += stackB.isEmpty() ? <span class="number">0</span> : stackB.pop();</span><br><span class="line">            <span class="type">ListNode</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(sum % <span class="number">10</span>);</span><br><span class="line">            temp.next = nodeC;</span><br><span class="line">            nodeC = temp;</span><br><span class="line">            carry = sum / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nodeC;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>time complexity:</strong> O(n)</p>
+<p><strong>space complexity:</strong> O(n)</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2022/10/21/jzii025/">https://linkjaja.github.io/2022/10/21/jzii025/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-10-21</p></div> 
+    <div class="post-entry__tags"><a href="/tags/Stack/" class="post-tags__link button"># Stack</a><a href="/tags/head-first-%E5%A4%B4%E6%8F%92%E6%B3%95/" class="post-tags__link button"># head first 头插法</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/10/21/jzii026/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 026. 重排链表
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/10/21/jzii024/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 024. 反转链表
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
+</html>
