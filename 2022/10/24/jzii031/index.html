@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>剑指 Offer II 031. 最近最少使用缓存 | Latehour Beer</title>
+
+
+    <meta name="keywords" content="HashTable, Quick Sort, LinkedList, Doubly Linkedlist 头插法">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="Introduce题干运用所掌握的数据结构，设计和实现一个 LRU (Least Recently Used，最近最少使用) 缓存机制 。 实现 LRUCache 类：  LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存 int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。 void put(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指 Offer II 031. 最近最少使用缓存">
+<meta property="og:url" content="https://linkjaja.github.io/2022/10/24/jzii031/index.html">
+<meta property="og:site_name" content="Latehour Beer">
+<meta property="og:description" content="Introduce题干运用所掌握的数据结构，设计和实现一个 LRU (Least Recently Used，最近最少使用) 缓存机制 。 实现 LRUCache 类：  LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU 缓存 int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。 void put(">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/10/24/z97WkgrZVdUS41m.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/10/24/1e8SuMBTNOVAzYR.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/10/24/KWIsQBXqVt61R2J.jpg">
+<meta property="article:published_time" content="2022-10-24T06:55:24.000Z">
+<meta property="article:modified_time" content="2022-10-24T08:58:01.224Z">
+<meta property="article:author" content="Link">
+<meta property="article:tag" content="HashTable">
+<meta property="article:tag" content="Quick Sort">
+<meta property="article:tag" content="LinkedList">
+<meta property="article:tag" content="Doubly Linkedlist 头插法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/10/24/z97WkgrZVdUS41m.jpg">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/isbl-editor-light.css" media="none" onload="this.media='all'">
+        
+    
+
+    
+    
+
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Latehour Beer</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/tags/" class="navbar-menu button">tags</a>
+                
+                    <a href="/categories/" class="navbar-menu button">categories</a>
+                
+                    <a href="/archives/" class="navbar-menu button">timeline</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="18" height="18" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/tags/" class="dropdown-menu button">tags</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">categories</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">timeline</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        剑指 Offer II 031. 最近最少使用缓存
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/10/" class="post-meta__date button">2022-10-24</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Leetcode/" class="button">Leetcode</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-%E8%AE%BE%E8%AE%A1-%E4%BD%BF%E7%94%A8hashtable%EF%BC%8Cdoubly-linkedlist"><span class="toc-text">Solution 1 (设计-使用hashtable，doubly linkedlist)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-%E8%AE%BE%E8%AE%A1-%E8%B0%83-LinkedHashMap"><span class="toc-text">Solution 2 (设计 - 调 LinkedHashMap)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought-1"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">Article Directory</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduce"><span class="toc-text">Introduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solutions"><span class="toc-text">Solutions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-1-%E8%AE%BE%E8%AE%A1-%E4%BD%BF%E7%94%A8hashtable%EF%BC%8Cdoubly-linkedlist"><span class="toc-text">Solution 1 (设计-使用hashtable，doubly linkedlist)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought"><span class="toc-text">Afterthought</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution-2-%E8%AE%BE%E8%AE%A1-%E8%B0%83-LinkedHashMap"><span class="toc-text">Solution 2 (设计 - 调 LinkedHashMap)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Thought-1"><span class="toc-text">Thought</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Code-1"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Afterthought-1"><span class="toc-text">Afterthought</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            This article was last updated on &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; days ago, the information described in the article may be outdated.
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-10-24"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><blockquote class="blockquote-note blockquote-note__important"><div class="blockquote-note__header"><div class="blockquote-note__icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></div>题干</div><div class="blockquote-note__content"><p>运用所掌握的数据结构，设计和实现一个 LRU (Least Recently Used，最近最少使用) 缓存机制 。</p>
+<p>实现 LRUCache 类：</p>
+<ul>
+<li><code>LRUCache(int capacity)</code> 以正整数作为容量 <code>capacity</code> 初始化 LRU 缓存</li>
+<li><code>int get(int key)</code> 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。</li>
+<li><code>void put(int key, int value)</code> 如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字-值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</li>
+</ul>
+<p><code>medium</code></p>
+<blockquote>
+<p><strong>src</strong>：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/OrIXps/">https://leetcode-cn.com/problems/OrIXps/</a></p>
+</blockquote>
+</div></blockquote>
+
+
+
+<h2 id="Solutions"><a href="#Solutions" class="headerlink" title="Solutions"></a>Solutions</h2><h3 id="Solution-1-设计-使用hashtable，doubly-linkedlist"><a href="#Solution-1-设计-使用hashtable，doubly-linkedlist" class="headerlink" title="Solution 1 (设计-使用hashtable，doubly linkedlist)"></a>Solution 1 (设计-使用hashtable，doubly linkedlist)</h3><h4 id="Thought"><a href="#Thought" class="headerlink" title="Thought"></a><strong>Thought</strong></h4><p><strong>实现一个 LRUCache 类，其中有 get(key), put(key, val) 方法。<br>put 超过 capacity 就删除 least recently used 的元素。</strong></p>
+<p><em>time complexity 都要是 O(1);</em></p>
+<p>根据以上，我们发现 <code>LRUcache</code> 需要满足：查找快，插入快，删除快，且有顺序。（数据结构见下图）</p>
+<blockquote>
+<ul>
+<li><p>从 <code>get(key)</code>，联想到用 <code>hashtable</code> 来关联 <code>key</code> 和 <code>val</code>，实现快速查找。</p>
+</li>
+<li><p>每次访问完，要把数据插到队头，快速插入用<code>链表</code>来实现。</p>
+</li>
+<li><p>放数据也是头插法，因为过载需要删除数据，所以用 <code>doubly linkedlist</code>，操作 <code>prev</code>，用前一个指向后一个来跳过当前数据。</p>
+</li>
+</ul>
+</blockquote>
+<div align="center" > <img src="https://s2.loli.net/2022/10/24/z97WkgrZVdUS41m.jpg" width="80%"> </div>
+
+<blockquote>
+<p><strong>需要注意：</strong></p>
+<p>链表中存的是 <code>&lt;key, val&gt;</code> 键值对，不只是 <code>val</code>，因为删掉不需要的元素后，在 <code>map</code> 中也要同步删掉，这时就需要通过链表中的 <code>key</code> 来定位 <code>map</code> 的 <code>key</code>。而且题目也明确说了存的是「关键字-值」。</p>
+</blockquote>
+<p>首先，构建 <code>doubly linkedlist</code> 的<code>节点类</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    Node prev, next;</span><br><span class="line">    <span class="type">int</span> key, val;</span><br><span class="line">    <span class="comment">// constructor</span></span><br><span class="line">    Node(<span class="type">int</span> k, <span class="type">int</span> v)&#123;</span><br><span class="line">        <span class="built_in">this</span>.key = k;</span><br><span class="line">        <span class="built_in">this</span>.val = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后，依照节点构建一个 <code>doubly linkedlist</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DoublyLinkedlist</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(Node x)</span>; <span class="comment">// 链表头插，time complexity O(1)</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">(Node x)</span>; <span class="comment">// 删除 Node x（x 一定存在），time complexity O(1)</span></span><br><span class="line">    Node <span class="title function_">removeLast</span><span class="params">()</span>; <span class="comment">// 删除链表最后一个节点，并返回该节点，time complexity O(1)</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span>; <span class="comment">// 返回链表长度，通过增加、减少节点时候的 tracking，time complexity O(1)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后，把 <code>doubly linkedlist</code> 与 <code>hashtable</code> 结合，就可以实现 <code>LRUCache</code>：</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">HashMap&lt;Integer, Node&gt; map;</span><br><span class="line">DoublyLinkedlist cache;</span><br><span class="line">int capacity;</span><br><span class="line"></span><br><span class="line">int get(int key):</span><br><span class="line">	if(map 中不包含 key)： -&gt; -1;</span><br><span class="line">	</span><br><span class="line">	查 map 得到 &lt;key, val&gt; 的 val，</span><br><span class="line">	put 这个 &lt;key, val&gt;，走的是已包含; // 保证顺序</span><br><span class="line">	-&gt; val;</span><br><span class="line"></span><br><span class="line">void put(int key, int val):</span><br><span class="line">	Node x = new Node(key, val);</span><br><span class="line">	if(map 中已包含 key):</span><br><span class="line">		删除旧的 Node x，头插新的 Node x; // 保证顺序</span><br><span class="line">		更新 map; // 因为 Node x 的 val 可能变了</span><br><span class="line">	else:</span><br><span class="line">		if(cache == capacity):</span><br><span class="line">			删除链表最后一个节点，并返回该节点，map 也同步删掉这个 key;</span><br><span class="line">		头插 Node x，更新 map;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>map 中已包含 key 的两种情况：</p>
+</blockquote>
+<div align="center" > <img src="https://s2.loli.net/2022/10/24/1e8SuMBTNOVAzYR.jpg" width="80%"> </div>
+
+<div align="center" > <img src="https://s2.loli.net/2022/10/24/KWIsQBXqVt61R2J.jpg" width="80%"> </div>
+
+
+
+<h4 id="Code"><a href="#Code" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">        Node prev, next;</span><br><span class="line">        <span class="type">int</span> key, val;</span><br><span class="line">        <span class="keyword">private</span> <span class="title function_">Node</span><span class="params">(<span class="type">int</span> k, <span class="type">int</span> v)</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.key = k;</span><br><span class="line">            <span class="built_in">this</span>.val = v;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">DoubleList</span>&#123;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">head</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="type">Node</span> <span class="variable">tail</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="type">int</span> size;</span><br><span class="line">        <span class="keyword">private</span> <span class="title function_">DoubleList</span><span class="params">()</span>&#123;</span><br><span class="line">            head.next = tail;</span><br><span class="line">            tail.prev = head;</span><br><span class="line">            size = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(Node node)</span>&#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">hnext</span> <span class="operator">=</span> head.next;</span><br><span class="line">            head.next = node;</span><br><span class="line">            hnext.prev = node;</span><br><span class="line">            node.prev = head;</span><br><span class="line">            node.next = hnext;</span><br><span class="line">            size++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">remove</span><span class="params">(Node node)</span>&#123;</span><br><span class="line">            node.prev.next = node.next;</span><br><span class="line">            node.next.prev = node.prev;</span><br><span class="line">            size--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span> Node <span class="title function_">removeLast</span><span class="params">()</span>&#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">last</span> <span class="operator">=</span> tail.prev;</span><br><span class="line">            remove(last);</span><br><span class="line">            <span class="keyword">return</span> last;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> size;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> DoubleList cache;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> capacity;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LRUCache</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.capacity = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;(capacity);</span><br><span class="line">        cache = <span class="keyword">new</span> <span class="title class_">DoubleList</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key)) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> map.get(key).val;</span><br><span class="line">        put(key, val);</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">x</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(key, val);</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">            cache.remove(map.get(key));</span><br><span class="line">            cache.addFirst(x);</span><br><span class="line">            map.put(key, x);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(cache.size() == capacity)&#123;</span><br><span class="line">                <span class="comment">// Node last = cache.removeLast();</span></span><br><span class="line">                <span class="comment">// map.remove(last.key);</span></span><br><span class="line">                map.remove(cache.removeLast().key);</span><br><span class="line">            &#125;</span><br><span class="line">            cache.addFirst(x);</span><br><span class="line">            map.put(key, x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * LRUCache obj = new LRUCache(capacity);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj.get(key);</span></span><br><span class="line"><span class="comment"> * obj.put(key,value);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Afterthought"><a href="#Afterthought" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>time complexity:</strong> O(1)</p>
+<h3 id="Solution-2-设计-调-LinkedHashMap"><a href="#Solution-2-设计-调-LinkedHashMap" class="headerlink" title="Solution 2 (设计 - 调 LinkedHashMap)"></a>Solution 2 (设计 - 调 LinkedHashMap)</h3><h4 id="Thought-1"><a href="#Thought-1" class="headerlink" title="Thought"></a><strong>Thought</strong></h4><blockquote>
+<p><strong>参考 Java 8：</strong><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html">https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html</a></p>
+<p><strong>参考题解：</strong><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/solution/yuan-yu-linkedhashmapyuan-ma-by-jeromememory/">https://leetcode-cn.com/problems/lru-cache/solution/yuan-yu-linkedhashmapyuan-ma-by-jeromememory/</a></p>
+</blockquote>
+<h4 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a><strong>Code</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> <span class="keyword">extends</span> <span class="title class_">LinkedHashMap</span>&lt;Integer, Integer&gt;&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> capacity;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LRUCache</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(capacity, <span class="number">0.75F</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="built_in">this</span>.capacity = capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">get</span><span class="params">(<span class="type">int</span> key)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.getOrDefault(key, -<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">removeEldestEntry</span><span class="params">(Map.Entry&lt;Integer, Integer&gt; eldest)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size() &gt; capacity;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * LRUCache obj = new LRUCache(capacity);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj.get(key);</span></span><br><span class="line"><span class="comment"> * obj.put(key,value);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Afterthought-1"><a href="#Afterthought-1" class="headerlink" title="Afterthought"></a>Afterthought</h4><p><strong>time complexity:</strong> O(1)</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>Author: </strong>linkjaja
+        </p>
+        <p>
+            <strong>
+                Permalink: 
+            </strong>
+            <a href="https://linkjaja.github.io/2022/10/24/jzii031/">https://linkjaja.github.io/2022/10/24/jzii031/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>updated at 2022-10-24</p></div> 
+    <div class="post-entry__tags"><a href="/tags/HashTable/" class="post-tags__link button"># HashTable</a><a href="/tags/Quick-Sort/" class="post-tags__link button"># Quick Sort</a><a href="/tags/LinkedList/" class="post-tags__link button"># LinkedList</a><a href="/tags/Doubly-Linkedlist-%E5%A4%B4%E6%8F%92%E6%B3%95/" class="post-tags__link button"># Doubly Linkedlist 头插法</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/10/24/jzii032/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 032. 有效的变位词
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/10/21/jzii030/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            剑指 Offer II 030. 插入、删除和随机访问都是 O(1) 的容器
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.sliding-fold').forEach((item) => {
+                item.querySelector('summary').onclick = () => {
+                    item.classList.toggle("collapsed");
+                    item.classList.toggle("expanded");
+                };
+            });
+        };
+    </script>
+ 
+
+
+
+
+    </body>
+</html>
